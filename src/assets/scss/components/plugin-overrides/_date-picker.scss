@@ -1,0 +1,80 @@
+// angular2-datetimepicker
+
+angular2-date-picker {
+  .winkel-calendar {
+      .wc-date-container {
+          background: $input-bg;
+          height: 33.5px;
+          border: 1px solid $border-color;
+          padding: 7px 15px;
+          span {
+              @extend .text-muted;
+          }
+          > i {
+              @extend .text-muted;
+              font-size: 16px;
+          }
+      }
+      .wc-date-popover {
+          width: auto;
+          .wc-banner,
+          .wc-details,
+          .year-title {
+              background: $primary;
+          }
+          .calendar-days {
+            color: $body-color;
+              tr {
+                  td {
+                      &.selected-day {
+                          > span {
+                              background: $primary;
+                          }
+                      }
+                      &:hover {
+                          > span {
+                              background: $primary;
+                          }
+                      }
+                      &.today {
+                          > span {
+                              border: 1px solid $primary;
+                          }
+                      }
+                  }
+              }
+          }
+          .cal-util {
+            .ok {
+              color: $primary;
+            }
+          }
+      }
+  }
+}
+.custom-dashboard {
+    .ngb-dp-week {
+        display: flex;
+        justify-content: space-between;
+    }
+    .ngb-dp-day, 
+    .ngb-dp-week-number, 
+    .ngb-dp-weekday {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        border-radius: 100%;
+        @media (max-width: 767px) {
+			padding: .25rem .25rem; 
+		}
+        &:focus,
+        &:active  {
+            outline: 0;
+        }
+    }
+    [ngbDatepickerDayView] {
+        border-radius: 100%;
+    }
+
+    
+}

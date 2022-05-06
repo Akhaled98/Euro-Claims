@@ -1,0 +1,57 @@
+// ngx-bar-rating
+
+.br {
+  @extend .m-0;
+  &.br-default,
+  &.br-fontawesome {
+      .br-units {
+          .br-unit {
+              height: auto;
+              font-size: 1.25rem;
+              &::after {
+                color: rgba($primary, .2);
+              }
+              &.br-active,
+              &.br-selected {
+                  &::after {
+                      color: $primary;
+                  }
+              }
+          }
+      }
+  }
+  &.br-horizontal {
+      display: block;
+      .br-units {
+          .br-unit {
+              height: 26px;
+              background-color: rgba($primary, .2);
+              &.br-active,
+              &.br-selected {
+                  background-color: $primary;
+              }
+          }
+      }
+  }
+  &.br-vertical,
+  &.br-movie,
+  &.br-square {
+      display: block;
+      .br-units {
+          .br-unit {
+              background-color: rgba($primary, .2);
+              border-color: rgba($primary, .2);
+              color: $body-color;
+              &.br-active,
+              &.br-selected {
+                  background-color: $primary;
+                  border-color: $primary;
+                  color: $white;
+              }
+          }
+      }
+      .br-text {
+        color: $primary;
+      }
+  }
+}
