@@ -209,19 +209,35 @@
             "PHONE": "الهاتف المحمول",
             "ADDRESS": "العنوان",
             "SAVE_CHANGES": "حفظ التغييرات"
+        },
+        "USERS": {
+            "NEW_USER": "إنشاء مستخدم جديد",
+            "INSURANCE_COMPANY": "إنشاء شركة تأمين",
+            "SAVE": "حفظ",
+            "CANCEL": "إلغاء"
         }
     },
     "VALIDATION": {
         "SIGN_IN": "تم تسجيل الدخول بنجاح",
         "SIGN_OUT": "تم تسجيل الخروج بنجاح",
-        "PASSWORD_CHANGE":"تم تغيير الرقم السرى بنجاح",
-        "ADDED_SUCCECFULLY":"تم الإضافة بنجاح",
-        "UPDATED_SUCCECFULLY":"تم التعديل بنجاح"
+        "PASSWORD_CHANGE": "تم تغيير الرقم السرى بنجاح",
+        "ADDED_SUCCECFULLY": "تم الإضافة بنجاح",
+        "UPDATED_SUCCECFULLY": "تم التعديل بنجاح",
+        "USER_ADDED_SUCCECFULLY": "تم إضافة المستخدم بنجاح",
+        "USER_UPDATED_SUCCECFULLY": "تم تعديل المستخدم بنجاح",
+        "INSURANCE_ADDED_SUCCECFULLY": "تم إضافة شركة التأمين بنجاح",
+        "INSURANCE_UPDATED_SUCCECFULLY": "تم تعديل شركة التأمين بنجاح",
+        "PASSWORD_NOT_MATCH": "الرمزان غير متطابقان"
     },
     "BACKEDMESSAGE": {
         "These credentials do not match our records.": "البيانات غير صحيحة ",
-        "The new password confirmation does not match.":"الرمزان غير متطابقان",
-        "The new password must be at least 6 characters.":"الرمز الجديد لابد ان يكون على الاقل من 6 حروف او ارقام"
+        "The new password confirmation does not match.": "الرمزان غير متطابقان",
+        "The new password must be at least 6 characters.": "الرمز الجديد لابد ان يكون على الاقل من 6 حروف او ارقام",
+        "The phone must be 11 digits.": "رقم الهاتف لابد ان يكون 11 رقم",
+        "The password confirmation does not match.": "الرمزان غير متطابقان",
+        "The name format is invalid.": "شكل الاسم غير صحيح",
+        "The phone has already been taken.": "هذا الرقم مدخل من قبل"
+
 
     }
 
