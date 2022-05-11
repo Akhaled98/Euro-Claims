@@ -1,4 +1,3 @@
-import { environment } from "src/environments/environment";
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error = "";
   submitted = false;
-  adminEmails: any;
   constructor(
     private formBuilder: FormBuilder,
     private _Router: Router,
@@ -28,7 +26,7 @@ export class LoginComponent implements OnInit {
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef
   ) {
-    this.adminEmails = environment.admin_emails;
+    
   }
 
   ngOnInit(): void {
@@ -54,10 +52,6 @@ export class LoginComponent implements OnInit {
       this.error = "Username and Password not valid !";
       return;
     } else {
-      const email = this.adminEmails.find(
-        (element) => element == this.loginForm.value.email
-      );
-      if (email != undefined) {
         let formData = {
           email: loginForm.value.email,
           password: this.encryptPassword(),
@@ -65,8 +59,7 @@ export class LoginComponent implements OnInit {
         this._AuthService.login(formData).subscribe(
           (response) => {
             localStorage.setItem("userToken", response.data.access_token);
-            localStorage.setItem("UserType", "Super Admin");
-            this._AuthService.saveCurrentUserAdmin(); // to decode token and save in currentUser
+            this._AuthService.saveCurrentUser(); // to decode token and save in currentUser
             this._Router.navigate(["/assignment"]);
             this.translate.get("VALIDATION").subscribe((translate) => {
               this.sharedService.notification(
@@ -74,8 +67,6 @@ export class LoginComponent implements OnInit {
                 "bg-green"
               );
             });
-          
-
           },
           (err) => {
             this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
@@ -86,52 +77,6 @@ export class LoginComponent implements OnInit {
             });
           }
         );
-      } else {
-        let formData = {
-          email: loginForm.value.email,
-          password: this.encryptPassword(),
-        };
-        this._AuthService.user_company_login(formData).subscribe(
-          (response) => {
-            if (response.data.role == "Insurance Company") {
-              
-              localStorage.setItem("userToken", response.data.access_token);
-            localStorage.setItem("UserType", "Insurance Company");
-              this._AuthService.saveCurrentInsuranceCompany(); // to decode token and save in currentUser
-              this._Router.navigate(["/assignment"]);
-              this.translate.get("VALIDATION").subscribe((translate) => {
-                this.sharedService.notification(
-                  `${translate.SIGN_IN}`,
-                  "bg-green"
-                );
-              });
-        
-
-            }else{
-              localStorage.setItem("userToken", response.data.access_token);
-            localStorage.setItem("UserType", "System User");
-              this._AuthService.saveCurrentUser(); // to decode token and save in currentUser
-              this._Router.navigate(["/assignment"]);
-              this.translate.get("VALIDATION").subscribe((translate) => {
-                this.sharedService.notification(
-                  `${translate.SIGN_IN}`,
-                  "bg-green"
-                );
-              });
-      
-
-            }
-          },
-          (err) => {
-            this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
-              this.sharedService.notification(
-                `${translate[err.error]}`,
-                "bg-red"
-              );
-            });
-          }
-        );
-      }
-    }
+      } 
   }
 }

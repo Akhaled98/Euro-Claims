@@ -214,7 +214,12 @@
             "NEW_USER": "إنشاء مستخدم جديد",
             "INSURANCE_COMPANY": "إنشاء شركة تأمين",
             "SAVE": "حفظ",
-            "CANCEL": "إلغاء"
+            "CANCEL": "إلغاء",
+            "NAME": "الاسم",
+            "ADDRESS": "العنوان",
+            "EMAIL": "البريد الإلكترونى",
+            "PHONE": "الهاتف المحمول",
+            "ROLE": "مستوى الصلاحية"
 
 
         }
@@ -229,7 +234,10 @@
         "USER_UPDATED_SUCCECFULLY": "تم تعديل المستخدم بنجاح",
         "INSURANCE_ADDED_SUCCECFULLY": "تم إضافة شركة التأمين بنجاح",
         "INSURANCE_UPDATED_SUCCECFULLY": "تم تعديل شركة التأمين بنجاح",
-        "PASSWORD_NOT_MATCH": "الرمزان غير متطابقان"
+        "PASSWORD_NOT_MATCH": "الرمزان غير متطابقان",
+        "DATANOTFOUND":"لا توجد بيانات",
+        "TOTAL":"الإجمالى"
+
     },
     "BACKEDMESSAGE": {
         "These credentials do not match our records.": "البيانات غير صحيحة ",

@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { NewInsuranceCompanyComponent } from './components/new-insurance-company/new-insurance-company.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NewInsuranceCompanyComponent } from './components/new-insurance-company
     ReactiveFormsModule,
     NgbModule,
     TranslateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxDatatableModule
   ],
 })
 export class UserModule { }

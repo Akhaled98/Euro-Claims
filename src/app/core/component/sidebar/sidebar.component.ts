@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/authentication/service/auth.service';
+import {  Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +9,7 @@ import { AuthService } from 'src/app/authentication/service/auth.service';
 export class SidebarComponent implements OnInit {
   
   public parentId = "";
-  showAdminUserOptions: boolean = false;
-  showUserOptions: boolean = false;
-
+  
   clickedMenu(event) {
     var target = event.currentTarget;
     let parentId = target.id;
@@ -23,7 +21,7 @@ export class SidebarComponent implements OnInit {
   }
   
     
-    constructor(private _AuthService: AuthService,private cdr: ChangeDetectorRef) {
+    constructor() {
     
    }
   ngOnInit() {
@@ -42,22 +40,8 @@ export class SidebarComponent implements OnInit {
       });
     });
 
-    this._AuthService.showAdminUserOptions.subscribe(() => {
-      if (this._AuthService.showAdminUserOptions.getValue() == false) {
-        this.showAdminUserOptions = false;
-      } else {
-        this.showAdminUserOptions = true;
-      }
-      
-    });
-    // this._AuthService.showUserOptions.subscribe(() => {
-    //   if (this._AuthService.showUserOptions.getValue() == true) {
-    //     this.showUserOptions = true;
-    //   } else {
-    //     this.showUserOptions = false;
-    //   }
-    //   this.cdr.detectChanges();
-    // });
+   
+    
   }
 
 }
