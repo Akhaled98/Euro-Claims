@@ -5,9 +5,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://198.38.89.8:8020',
-  admin_emails:[
-    "admin@euro.app", "admin2@euro.app", "admin3@euro.app", "admin4@euro.app"
-  ],
 };
 
 /*

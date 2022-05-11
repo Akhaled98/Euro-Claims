@@ -63,15 +63,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.check_User_Admin();
-    if(this.showUserOptions == true){
-      this._AuthService.logoutAdmin().subscribe(
+      this._AuthService.logout().subscribe(
         (response) => {
           if (response["status"] == "success") {
             this._AuthService.currenetUser.next(null);
-            this._AuthService.displayControllerAdmin();
+            this._AuthService.displayController();
             localStorage.removeItem("userToken");
-            localStorage.removeItem("UserType");
             this._Router.navigate(["/authentication/login"]);
             this.translate.get("VALIDATION").subscribe((translate) => {
               this._SharedService.notification(
@@ -90,42 +87,7 @@ export class NavbarComponent implements OnInit {
           }
         }
       );
-    }else{
-      this._AuthService.logoutGeneral().subscribe(
-        (response) => {
-          if (response["status"] == "success") {
-            this._AuthService.currenetUser.next(null);
-            this._AuthService.displayControllerGeneral();
-            localStorage.removeItem("userToken");
-            localStorage.removeItem("UserType");
-            this._Router.navigate(["/authentication/login"]);
-            this.translate.get("VALIDATION").subscribe((translate) => {
-              this._SharedService.notification(
-                `${translate.SIGN_OUT}`,
-                "bg-green"
-              );
-            });
-          }
-        },
-        (err) => {
-          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
-            this._SharedService.notification(`${translate[err.error]}`, "bg-red");
-          });
-          if (err.status == "failed") {
-            this.error = err.error;
-          }
-        }
-      );
-    }
+    
   
-  }
-  check_User_Admin() {
-    this._AuthService.showUserOptions.subscribe(() => {
-      if (this._AuthService.showUserOptions.getValue() == false) {
-        this.showUserOptions = false;
-      } else {
-        this.showUserOptions = true;
-      }
-    });
   }
 }
