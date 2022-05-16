@@ -6,25 +6,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ClientService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-  createNewUser(UserData) {
-    let token: any = localStorage.getItem("userToken");
-    return this._HttpClient.post(
-      `${environment.apiUrl}/api/dashboard/admins/web-users`,UserData,
-      {
-        headers: new HttpHeaders({
-          Authorization: "Bearer " + token,
-        }),
-      }
-    );
-  }
   createInsuranceCompany(InsuranceCompanyData) {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.post(
-      `${environment.apiUrl}/api/dashboard/admins/accounts/insurance-users/store`,InsuranceCompanyData,
+      `${environment.apiUrl}/api/dashboard/admins/insurance-companies`,InsuranceCompanyData,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,
@@ -33,10 +22,10 @@ export class UserService {
     );
   }
 
-  getAllUser() {
+  getAllInsurance() {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.get(
-      `${environment.apiUrl}/api/dashboard/admins/web-users`,
+      `${environment.apiUrl}/api/dashboard/admins/insurance-companies`,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,
@@ -44,10 +33,10 @@ export class UserService {
       }
     );
   }
-  updateUser(UserData,id) {
+  updateInsurance(UserData,id) {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.put(
-      `${environment.apiUrl}/api/dashboard/admins/web-users/${id}`,UserData,
+      `${environment.apiUrl}/api/dashboard/admins/insurance-companies/${id}`,UserData,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,
@@ -55,21 +44,22 @@ export class UserService {
       }
     );
   }
-  getUserById(id): Observable<any> {
+  getInsuranceById(id): Observable<any> {
     let token: any = localStorage.getItem("userToken");
-    return this._HttpClient.get(`${environment.apiUrl}/api/dashboard/admins/web-users/${id}`, {
+    return this._HttpClient.get(`${environment.apiUrl}/api/dashboard/admins/insurance-companies/${id}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + token,
       }),
     });
   }
-  deleteUser(id): Observable<any> {
+  deleteInsurance(id): Observable<any> {
     let token: any = localStorage.getItem("userToken");
-    return this._HttpClient.delete(`${environment.apiUrl}/api/dashboard/admins/web-users/${id}`, {
+    return this._HttpClient.delete(`${environment.apiUrl}/api/dashboard/admins/insurance-companies/${id}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + token,
       }),
     });
   }
+  
   
 }

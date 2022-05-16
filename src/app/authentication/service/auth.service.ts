@@ -12,6 +12,7 @@ export class AuthService {
   constructor(private _HttpClient: HttpClient, private _Router: Router) {
     if (localStorage.getItem("userToken") != null) {
       this.saveCurrentUser();
+      // this._Router.navigate(["/assignment"]);
     }
   }
 
@@ -25,7 +26,7 @@ export class AuthService {
   saveCurrentUser() {
     let token: any = localStorage.getItem("userToken");
     this.currenetUser.next(jwtDecode(token));
-    this.showController();  
+    this.showController();
   }
  
 

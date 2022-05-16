@@ -79,12 +79,24 @@ export class NavbarComponent implements OnInit {
           }
         },
         (err) => {
-          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
-            this._SharedService.notification(`${translate[err.error]}`, "bg-red");
-          });
+          if(err.error!=null){
+            this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+              this._SharedService.notification(
+                `${translate[err.error]}`,
+                "bg-red"
+              );
+            });
+          }else{
+            this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+              this._SharedService.notification(
+                `${translate[`Unauthenticated.`]}`,
+                "bg-red"
+              );
+            });
+          }
           if (err.status == "failed") {
             this.error = err.error;
-          }
+          } 
         }
       );
     
