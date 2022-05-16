@@ -1,33 +1,21 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
-
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
-
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $demo1-primary: mat-palette($mat-indigo);
 $demo1-accent: mat-palette($mat-pink, A200, A100, A400);
-
 // The warn palette is optional (defaults to red).
 $demo1-warn: mat-palette($mat-red);
-
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$demo1-theme: mat-light-theme((
-  color: (
-    primary: $demo1-primary,
-    accent: $demo1-accent,
-    warn: $demo1-warn,
-  )
-));
-
+$demo1-theme: mat-light-theme(( color: ( primary: $demo1-primary, accent: $demo1-accent, warn: $demo1-warn, )));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -45,14 +33,15 @@ $demo1-theme: mat-light-theme((
 @import "./assets/scss/functions";
 
 /* === Icon fonts === */
+
 @import "~ti-icons/css/themify-icons.css";
 @import "~@mdi/font/scss/materialdesignicons";
 @import "~font-awesome/scss/font-awesome";
 @import "~flag-icon-css/sass/flag-icon";
 @import "~simple-line-icons/scss/simple-line-icons";
 
-
 /* === Template mixins === */
+
 @import "./assets/scss/mixins/animation";
 @import "./assets/scss/mixins/badges";
 @import "./assets/scss/mixins/buttons";
@@ -65,6 +54,7 @@ $demo1-theme: mat-light-theme((
 @import "./assets/scss/mixins/no-ui-slider";
 
 /* === Core Styles === */
+
 @import "./assets/scss/background";
 @import "./assets/scss/typography";
 @import "./assets/scss/reset";
@@ -75,6 +65,7 @@ $demo1-theme: mat-light-theme((
 @import "./assets/scss/spinner";
 
 /* === Components === */
+
 @import "./assets/scss/components/forms";
 @import "./assets/scss/components/checkbox-radio";
 @import "./assets/scss/components/icons";
@@ -102,10 +93,10 @@ $demo1-theme: mat-light-theme((
 @import "./assets/scss/components/email/message-content";
 @import "./assets/scss/components/todo-list";
 @import "./assets/scss/components/date-picker";
-
 @import "./assets/scss/components/landing-screens/auth";
 
 /* === Plugin styles === */
+
 @import "~morris.js/morris.css";
 @import "~chartist/dist/chartist.min.css";
 @import '~dragula/dist/dragula.min.css';
@@ -131,6 +122,7 @@ $demo1-theme: mat-light-theme((
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 /* === Plugin Overrides === */
+
 @import "./assets/scss/components/plugin-overrides/contex-menu";
 @import './assets/scss/components/plugin-overrides/no-ui-slider';
 @import "./assets/scss/components/plugin-overrides/owl-carousel";
@@ -145,92 +137,106 @@ $demo1-theme: mat-light-theme((
 @import "./assets/scss/components/plugin-overrides/toast";
 @import "./assets/scss/components/plugin-overrides/full-calendar";
 
-
-
 /* === Layout === */
+
 @import "./assets/scss/layout";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .bg-green {
-  background: rgb(65, 252, 134);
-  color: black;
-  z-index:1000000 !important;
+    background: rgb(65, 252, 134);
+    color: black;
+    z-index: 1000000 !important;
 }
+
 .bg-red {
-  background: #F44336;
-  color: white;
-  z-index:1000000 !important;
+    background: #F44336;
+    color: white;
+    z-index: 1000000 !important;
 }
+
+// .ngx-datatable.material {
+//     background: #fff;
+//     border: 1px solid #f5f5f5;
+//     box-shadow: none !important;
+//     padding: 5px;
+//     .datatable-footer {
+//         .datatable-pager {
+//             .pager li a {
+//                 margin: 5px;
+//                 .datatable-icon-right,
+//                 .datatable-icon-skip,
+//                 .datatable-icon-left,
+//                 .datatable-icon-prev {
+//                     line-height: 30px;
+//                 }
+//             }
+//             li.active a {
+//                 background-color: #0d8df3;
+//                 transition: 0.25s ease;
+//                 color: #ffffff;
+//                 box-shadow: 4px 3px 6px 0 rgba(0, 0, 0, 0.2);
+//             }
+//         }
+//     }
+// }
+
 .ngx-datatable.material {
-  background: #fff;
-  border: 1px solid #f5f5f5;
-  box-shadow: none !important;
-  padding:5px;
-
-  .datatable-footer {
-    .datatable-pager {
-      .pager li a {
-        margin: 5px;
-
-        .datatable-icon-right,
-        .datatable-icon-skip,
-        .datatable-icon-left,
-        .datatable-icon-prev {
-          line-height: 30px;
+    box-shadow: none;
+    font-size: 13px;
+    .datatable-header {
+        height: unset !important;
+        .datatable-header-cell {
+            vertical-align: bottom;
+            padding: 12px 20px;
         }
-      }
-
-      li.active a {
-        background-color: #0d8df3;
-        transition: 0.25s ease;
-        color: #ffffff;
-        box-shadow: 4px 3px 6px 0 rgba(0, 0, 0, 0.2);
-      }
     }
-  }
-}
-.ngx-datatable {
-  .datatable-body-cell {
-    display: table !important;
-  }
-
-  .datatable-body-cell-label {
-    display: table-cell !important;
-    vertical-align: middle !important;
-  }
-
-  .datatable-header-cell {
-    line-height: 2.4 !important;
-  }
-}
-.ngx-datatable.material {
-  background: #fff;
-  border: 1px solid #f5f5f5;
-  box-shadow: none !important;
-  padding:5px;
-
-  .datatable-footer {
-    .datatable-pager {
-      .pager li a {
-        margin: 5px;
-
-        .datatable-icon-right,
-        .datatable-icon-skip,
-        .datatable-icon-left,
-        .datatable-icon-prev {
-          line-height: 30px;
+    .datatable-body {
+        .datatable-body-row {
+            height: 50px !important;
+            vertical-align: top;
+            border-top: 1px solid #d1d4d7;
+            &.datatable-row-even {
+                background-color: #fcfcfc;
+            }
+            &:hover {
+                .datatable-row-group {
+                    background-color: #f8f8f8;
+                }
+            }
+            &.active {
+                background-color: #1483ff;
+                color: #fff;
+            }
+            .datatable-body-cell {
+                text-align: right;
+                vertical-align: top;
+                display: table !important;
+                padding: 12px 20px;
+            }
         }
-      }
-
-      li.active a {
-        background-color: #0d8df3;
-        transition: 0.25s ease;
-        color: #ffffff;
-        box-shadow: 4px 3px 6px 0 rgba(0, 0, 0, 0.2);
-      }
     }
-  }
+    .mat-icon-button {
+        height: unset !important;
+        padding: 0;
+        line-height: unset !important;
+    }
+    .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: bolder;
+    }
 }
 
-
-
+.f-18 {
+    font-size: 18px;
+}

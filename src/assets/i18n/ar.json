@@ -182,7 +182,11 @@
 
     "SYSTEM": {
         "TITLE": "شركة التأمين",
-        "REQUIRED": "هذا الحقل مطلوب"
+        "REQUIRED": "هذا الحقل مطلوب",
+        "UPDATE": "تعديل",
+        "DELETE": "حذف",
+        "SHOW": "عرض التفاصيل",
+        "EMAI_REQIRED": "الايميل مطلوب"
     },
     "SIDEBAR": {
         "Dashboard": "لوحة القيادة",
@@ -211,6 +215,7 @@
             "SAVE_CHANGES": "حفظ التغييرات"
         },
         "USERS": {
+            "TITLE": "المستخدمين",
             "NEW_USER": "إنشاء مستخدم جديد",
             "INSURANCE_COMPANY": "إنشاء شركة تأمين",
             "SAVE": "حفظ",
@@ -219,7 +224,14 @@
             "ADDRESS": "العنوان",
             "EMAIL": "البريد الإلكترونى",
             "PHONE": "الهاتف المحمول",
-            "ROLE": "مستوى الصلاحية"
+            "ROLE": "مستوى الصلاحية",
+            "MANAGER_CONTACT": "مسئول التواصل",
+            "ACTIVE": "فعال",
+            "DE_ACTIVE": "غير فعال",
+            "STATUS": "الحالة"
+        },
+        "CLIENT": {
+            "TITLE": "العملاء"
         }
     },
     "VALIDATION": {
@@ -233,8 +245,15 @@
         "INSURANCE_ADDED_SUCCECFULLY": "تم إضافة شركة التأمين بنجاح",
         "INSURANCE_UPDATED_SUCCECFULLY": "تم تعديل شركة التأمين بنجاح",
         "PASSWORD_NOT_MATCH": "الرمزان غير متطابقان",
-        "DATANOTFOUND":"لا توجد بيانات",
-        "TOTAL":"الإجمالى"
+        "DATANOTFOUND": "لا توجد بيانات",
+        "TOTAL": "الإجمالى",
+        "EMAIL_INVALID": "شكل الإيميل خطأ",
+        "MESSAGE": "لن تستطيع الاعادة مرة اخرى",
+        "CONFIRMMESSAGE": "هل انت متاكد؟",
+        "YES": "نعم",
+        "NO": "لا",
+        "DELETE_SUCCESS": "تم الحذف بنجاح"
+
 
     },
     "BACKEDMESSAGE": {
@@ -244,7 +263,12 @@
         "The phone must be 11 digits.": "رقم الهاتف لابد ان يكون 11 رقم",
         "The password confirmation does not match.": "الرمزان غير متطابقان",
         "The name format is invalid.": "شكل الاسم غير صحيح",
-        "The phone has already been taken.": "هذا الرقم مدخل من قبل"
+        "The phone has already been taken.": "هذا الرقم مدخل من قبل",
+        "Server Error": "هناك مشكلة فى الخادم",
+        "The new password field is required.": "الرمز الجديد مطلوب",
+        "The email has already been taken.": "هذا الايميل مستخدم من قبل",
+        "Unauthenticated.": "غير مسجل الدخول",
+        "يجب أن يحتوي الهاتف على 11 رقمًا/أرقام.": "يجب أن يحتوي الهاتف على 11 رقمًا/أرقام"
 
 
     }

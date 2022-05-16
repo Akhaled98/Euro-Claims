@@ -7,13 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NewUserComponent } from './components/new-user/new-user.component';
-import { NewInsuranceCompanyComponent } from './components/new-insurance-company/new-insurance-company.component';
+import { NewUserComponent } from './new-user/new-user.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
-
+import { MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
-  declarations: [UserComponent, NewUserComponent, NewInsuranceCompanyComponent],
+  declarations: [UserComponent, NewUserComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -22,7 +21,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgbModule,
     TranslateModule,
     MatSnackBarModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatMenuModule,
+    MatIconModule
   ],
 })
 export class UserModule { }

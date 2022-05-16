@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
     private _AuthService: AuthService,
     private cdr: ChangeDetectorRef
   ) {
-    // localStorage.removeItem("userToken");
 
     
     //  Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit {
               this.showNavbar = false;
             } else {
               this.showNavbar = true;
+              console.log("1",this.showNavbar)
             }
             this.cdr.detectChanges();
           });
@@ -70,9 +70,6 @@ export class AppComponent implements OnInit {
             this.cdr.detectChanges();
           });
 
-          // this.showSidebar = false;
-          // this.showNavbar = false;
-          // this.showSettings = false;
           document.querySelector(".main-panel").classList.add("w-100");
           document
             .querySelector(".page-body-wrapper")
@@ -106,10 +103,7 @@ export class AppComponent implements OnInit {
         } else {
           translate.use("ar");
           document.querySelector("body").classList.add("rtl");
-          // this.showSidebar = true;
-          // this.showNavbar = true;
-          // this.showSettings = true;
-
+        
           this._AuthService.showNavbar.subscribe(() => {
             if (this._AuthService.showNavbar.getValue() == false) {
               this.showNavbar = false;
