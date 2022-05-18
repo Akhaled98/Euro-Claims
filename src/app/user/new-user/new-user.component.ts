@@ -1,3 +1,4 @@
+import { ClientService } from "./../../client/client.service";
 import { SharedService } from "src/app/shared/shared.service";
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -15,7 +16,9 @@ declare var CryptoJSAesJson: any;
 export class NewUserComponent implements OnInit {
   newUserForm: FormGroup;
   passwordFlag: boolean = false;
-  oneUser:any;
+  oneUser: any;
+  insuranceCompanyFlag: boolean = false;
+  allCompany: any;
   constructor(
     private formBuilder: FormBuilder,
     public translate: TranslateService,
@@ -23,23 +26,27 @@ export class NewUserComponent implements OnInit {
     private _UserService: UserService,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private _Router: Router
+    private _Router: Router,
+    private _ClientService: ClientService
   ) {}
 
   ngOnInit(): void {
     const id = +this.activatedRoute.snapshot.params.id || null;
     if (id) {
       this._UserService.getUserById(id).subscribe((res) => {
-        this.oneUser=res.data;
+        this.oneUser = res.data;
         this.newUserForm.patchValue(res.data);
       });
     }
     this.initForm();
+    this.getActiveCompany();
   }
   initForm() {
     this.newUserForm = this.formBuilder.group({
       id: [null],
       name: [null, [Validators.required]],
+      account_type: [null, [Validators.required]],
+      insurance_company_id: [null],
       email: [null, [Validators.required, Validators.email]],
       phone: [null, [Validators.required]],
       address: [null, [Validators.required]],
@@ -47,33 +54,53 @@ export class NewUserComponent implements OnInit {
       password_confirmation: [null, [Validators.required]],
     });
   }
-
+  getActiveCompany() {
+    this._ClientService.getAllInsurance().subscribe((res) => {
+      this.allCompany = res["data"];
+      this.allCompany = this.allCompany.filter(
+        (company) => company.status === "active"
+      );
+    });
+  }
   encryptPassword() {
     let valueToEncrypt = this.newUserForm.value.password;
     let encreptionKey = "euro-claim-management-crypto-aes-key";
     return CryptoJSAesJson.encrypt(valueToEncrypt, encreptionKey);
   }
+  patchingUserType(event) {
+    if (event == "Agent") {
+      this.newUserForm.value.account_type = event;
+      this.insuranceCompanyFlag = false;
+    } else {
+      this.insuranceCompanyFlag = true;
+      this.newUserForm.value.account_type = event;
+    }
+  }
+  patchingInsuranceId(event) {
+    this.newUserForm.value.insurance_company_id = event;
+  }
   onSubmit(newUserForm: FormGroup) {
+    console.log(this.newUserForm.value)
     if (
       this.newUserForm.value.password ==
       this.newUserForm.value.password_confirmation
     ) {
-      if(this.oneUser != null){
-
+      if (this.oneUser != null) {
         let formData = {
           id: this.newUserForm.value.id,
           name: this.newUserForm.value.name,
           email: this.newUserForm.value.email,
           phone: this.newUserForm.value.phone,
           address: this.newUserForm.value.address,
-          account_type: "Agent",
+          account_type: this.newUserForm.value.account_type,
+          insurance_company_id: this.newUserForm.value.insurance_company_id,
           password: this.encryptPassword(),
           password_confirmation: this.newUserForm.value.password,
         };
         formData.password_confirmation = formData.password;
         delete formData.id;
         this.passwordFlag = false;
-        this._UserService.updateUser(formData,this.oneUser?.id).subscribe(
+        this._UserService.updateUser(formData, this.oneUser?.id).subscribe(
           (res) => {
             this.translate.get("VALIDATION").subscribe((translate) => {
               this.sharedService.notification(
@@ -93,15 +120,15 @@ export class NewUserComponent implements OnInit {
             });
           }
         );
-
-      }else{
+      } else {
         let formData = {
           id: this.newUserForm.value.id,
           name: this.newUserForm.value.name,
           email: this.newUserForm.value.email,
           phone: this.newUserForm.value.phone,
           address: this.newUserForm.value.address,
-          account_type: "Agent",
+          account_type: this.newUserForm.value.account_type,
+          insurance_company_id: this.newUserForm.value.insurance_company_id,
           password: this.encryptPassword(),
           password_confirmation: this.newUserForm.value.password,
         };

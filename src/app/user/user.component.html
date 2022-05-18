@@ -1,16 +1,14 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-between align-items-center">
             <div class="col-md-3">
                 <h1 class="font-weight-bold">{{'PAGE.USERS.TITLE' |translate}}</h1>
             </div>
             <div class="col-md-3">
-
                 <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" [routerLink]="'/user/createUser'">{{'PAGE.USERS.NEW_USER' |translate}}</button>
-
             </div>
         </div>
-        <div class="col-sm-12 my-4">
+        <div class="col-sm-12 my-4" *ngIf="dataUser!=null">
             <ngx-datatable #table class="material" [rows]="dataUser" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
                 <ngx-datatable-column [sortable]="true" prop='name' name="{{'PAGE.USERS.NAME'  | translate}}">
                 </ngx-datatable-column>

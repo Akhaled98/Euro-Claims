@@ -11,6 +11,7 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [UserComponent, NewUserComponent],
   imports: [
@@ -23,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     NgxDatatableModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    NgSelectModule
   ],
 })
 export class UserModule { }
