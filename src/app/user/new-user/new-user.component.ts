@@ -36,6 +36,10 @@ export class NewUserComponent implements OnInit {
       this._UserService.getUserById(id).subscribe((res) => {
         this.oneUser = res.data;
         this.newUserForm.patchValue(res.data);
+        if (this.oneUser.role== "Insurance User") {
+          // this.newUserForm.value.account_type = event;
+          this.insuranceCompanyFlag = true;
+        }
       });
     }
     this.initForm();
