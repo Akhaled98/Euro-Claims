@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
     { name: "address", prop: "address" },
 
   ];
-  dataUser = [];
+  dataUser:any=null;
   messages = {emptyMessage: '', totalMessage: ''};
 
   constructor(private _UserService:UserService,

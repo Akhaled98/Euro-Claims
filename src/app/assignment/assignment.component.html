@@ -1,1 +1,45 @@
-<p>assignment works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+            <div class="col-md-3">
+                <h1 class="font-weight-bold">{{'PAGE.ASSIGNMENT.TITLE' |translate}}</h1>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" [routerLink]="'/assignment/newAssignment'">{{'PAGE.ASSIGNMENT.NEW_ASSIGNMENT' |translate}}</button>
+            </div>
+        </div>
+        <div class="col-sm-12 my-4" *ngIf="assignmentData!=null">
+            <ngx-datatable #table class="material" [rows]="assignmentData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
+                <ngx-datatable-column [sortable]="true" prop='customer_name' name="{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='customer_phone' name="{{'PAGE.ASSIGNMENT.CLIENT_PHONE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='insurance_company' name="{{'SYSTEM.TITLE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='contact_person_name' name="{{'PAGE.ASSIGNMENT.CONTACT_PERSON_NAME'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='examination_type' name="{{'PAGE.ASSIGNMENT.EXAMINATION_TYPE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='examination_location_type' name="{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_TYPE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='car_model' name="{{'PAGE.ASSIGNMENT.CAR_MODEL'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="false" [maxWidth]="70">
+                    <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <button class="btn tblActnBtn h-auto " [matMenuTriggerFor]="belowMenu">
+                            <mat-icon class="f-18">menu</mat-icon>
+                        </button>
+                        <mat-menu #belowMenu="matMenu" class="d-flex flex-column align-items-end justify-content-end" yPosition="below" style="height: 10em;">
+                            <button class="text-center" mat-menu-item (click)='editRow(row)'>
+                                {{ 'SYSTEM.UPDATE' |translate}}
+                            </button>
+                            <button class="text-center" mat-menu-item (click)='deleteRow(row)'>
+                                {{ 'SYSTEM.DELETE' |translate}}
+                            </button>
+                        </mat-menu>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</div>
