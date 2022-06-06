@@ -2,7 +2,6 @@ import { AssignmentService } from './assignment.service';
 import { SharedService } from './../shared/shared.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from './../user/user.service';
 import { ViewChild } from "@angular/core";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { Component, OnInit } from "@angular/core";
@@ -29,7 +28,6 @@ export class AssignmentComponent implements OnInit {
   messages = { emptyMessage: "", totalMessage: "" };
 
   constructor(
-    private _UserService: UserService,
     public translate: TranslateService,
     private _Router: Router,
     private sharedService: SharedService,

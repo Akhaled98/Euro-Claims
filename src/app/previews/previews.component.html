@@ -1,1 +1,39 @@
-<p>previews works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+            <div class="col-md-3">
+                <h1 class="font-weight-bold">{{'PAGE.PREVIEWS.TITLE' |translate}}</h1>
+            </div>
+        </div>
+        <div class="col-sm-12 my-4" *ngIf="previewData != null">
+            <ngx-datatable #table class="material" [rows]="previewData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
+                <ngx-datatable-column [sortable]="true" prop='assignment.customer_name' name="{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.customer_phone' name="{{'PAGE.ASSIGNMENT.CLIENT_PHONE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.insurance_company' name="{{'SYSTEM.TITLE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.contact_person_name' name="{{'PAGE.ASSIGNMENT.CONTACT_PERSON_NAME'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.examination_type' name="{{'PAGE.ASSIGNMENT.EXAMINATION_TYPE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.examination_location_type' name="{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_TYPE'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="true" prop='assignment.car_model' name="{{'PAGE.ASSIGNMENT.CAR_MODEL'  | translate}}">
+                </ngx-datatable-column>
+                <ngx-datatable-column [sortable]="false" [maxWidth]="70">
+                    <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <button class="btn tblActnBtn h-auto " [matMenuTriggerFor]="belowMenu">
+                            <mat-icon class="f-18">menu</mat-icon>
+                        </button>
+                        <mat-menu #belowMenu="matMenu" class="d-flex flex-column align-items-end justify-content-end" yPosition="below" style="height: 10em;">
+                            <button class="text-center" mat-menu-item (click)='editRow(row)'>
+                                {{ 'PAGE.PREVIEWS.DETAILS' |translate}}
+                            </button>
+                        </mat-menu>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</div>
