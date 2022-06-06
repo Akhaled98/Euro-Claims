@@ -267,6 +267,18 @@
             "EXAMINATION_DATE": "تاريخ المعاينة",
             "EXAMINATION_START": "بداية المعاينة",
             "EXAMINATION_END": "نهاية المعاينة"
+        },
+        "PREVIEWS": {
+            "TITLE": "المعاينات",
+            "DETAILS": "تفاصيل المعاينة",
+            "INSURANCE_COMPANY_DATA": "بيانات  مكان المعاينة",
+            "ATTATCHES": "ملفات المعاينة",
+            "UPLOAD_BY": "رفع بواسطة",
+            "LIKE": "اعجبنى",
+            "DISIKE": "لم يعجبنى",
+            "ZOOM": "تكبير",
+            "NOTES": "الرجاء إضافة ملاحظات عدم الإعجاب"
+
 
         }
     },
@@ -290,7 +302,11 @@
         "NO": "لا",
         "DELETE_SUCCESS": "تم الحذف بنجاح",
         "ASSIGNMENT_ADDED_SUCCECFULLY": "تم إضافة التكليف بنجاح",
-        "ASSIGNMENT_UPDATED_SUCCECFULLY": "تم تعديل التكليف بنجاح"
+        "ASSIGNMENT_UPDATED_SUCCECFULLY": "تم تعديل التكليف بنجاح",
+        "LIKE_OK": "تم الاعجاب بنجاح",
+        "DISLIKE_OK": "تم إلغاء الاعجاب بنجاح"
+
+
 
 
 

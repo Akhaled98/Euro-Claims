@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+            <div class="col-md-3">
+                <h1 class="font-weight-bold">{{'PAGE.PREVIEWS.DETAILS' |translate}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold">{{'PAGE.ASSIGNMENT.CLIENT_DATA' | translate}} :-</h3>
+        </div>
+    </div>
+    <div class="row px-2">
+        <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CLIENT_NAME' | translate}} : {{onePreview?.assignment.customer_name}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold">{{'PAGE.ASSIGNMENT.CAR_DATA' | translate}} :-</h3>
+        </div>
+    </div>
+    <div class="row px-2">
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_DOCUMENT' | translate}} : {{onePreview?.assignment.car_document_number}}
+        </div>
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_VIN' | translate}} : {{onePreview?.assignment.car_vin_decoder}}
+        </div>
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_PLATE' | translate}} : {{onePreview?.assignment.car_plate_number}}
+        </div>
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_ENGINE' | translate}} : {{onePreview?.assignment.car_engine_number}}
+        </div>
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_COLOR' | translate}} : {{onePreview?.assignment.car_color}}
+        </div>
+        <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
+            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_MODEL' | translate}} : {{onePreview?.assignment.car_model}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold">{{'PAGE.PREVIEWS.ATTATCHES' | translate}} :-</h3>
+        </div>
+    </div>
+    <div *ngFor="let image of onePreview?.attachments" class="row mt-3">
+        <div class="col-md-7 mx-3 mt-1">
+            <div class="row mx-3 ">
+                <div class="col-md-2  d-flex justify-content-center">
+                    <img src="../../../../assets/images/Profile_avatar_placeholder_large.png" class="logo" alt="">
+                </div>
+                <!-- <img src="../../../../assets/images/Profile_avatar_placeholder_large.png" class="logo" alt=""> -->
+                <div class="col-md-10">
+                    <h4 class="font-weight-bold">{{'PAGE.PREVIEWS.UPLOAD_BY' |translate}} : {{onePreview?.assignment.assigned_to}}
+                    </h4>
+                    <p class="text-lead text-muted">{{image.created_at}} {{image.created_since}}</p>
+                </div>
+            </div>
+            <div class="row mx-3 pb-3  design">
+                <img class="w-100" [src]="image.attachment_path">
+            </div>
+            <div class="row mx-3 d-flex justify-content-between align-items-center design">
+                <div class="col-md-3 shape">
+                    <button (click)="likeImg(image)" class="p-2 actions"><i
+                            class="px-1 fa-solid text-info fa-thumbs-up"></i> {{'PAGE.PREVIEWS.LIKE'
+                        |translate}}</button>
+                </div>
+                <div class="col-md-3 shape">
+                    <button (click)="openNotesModal(image)" class="p-2 actions"><i
+                            class="px-1 fa-solid fa-thumbs-down text-info"></i> {{'PAGE.PREVIEWS.DISIKE'
+                        |translate}}</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="p-2 actions"><i class="px-1 fa-solid fa-magnifying-glass"></i> {{'PAGE.PREVIEWS.ZOOM'
+                        |translate}}</button>
+                </div>
+            </div>
+        </div>
+        <!-- <image-cropper [imageChangedEvent]="imgChangeEvent" [aspectRatio]="4/4" [maintainAspectRatio]="true"
+            [resizeToWidth]="256" format="png" (imageCropped)="cropImg($event)" (imageLoaded)="imgLoad()"
+            (cropperReady)="initCropper()" (loadImageFailed)="imgFailed()"></image-cropper>
+        <img [src]="cropImgPreview" alt=""> -->
+
+    </div>
+
+</div>
+<ng-template #notesModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{'PAGE.PREVIEWS.NOTES'|translate}}</h4>
+        <!-- <button type="button" class="btn close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button> -->
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="notesForm" #formDirective="ngForm" (ngSubmit)="onSubmitDisLike(notesForm,formDirective)">
+            <div class="row d-flex justify-content-start align-items-center">
+                <div class="input-field col s12 d-none">
+                    <input formControlName="id" class="form-control" type="hidden">
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 ">
+                    <input formControlName='notes' type="text" class="form-control">
+                </div>
+                <div class="py-1 mx-2">
+                    <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" type="submit">{{'PAGE.PREVIEWS.DISIKE' |translate}}</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</ng-template>
