@@ -19,6 +19,7 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { ImageCroppedEvent } from "ngx-image-cropper";
+
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: "app-assign-preview",
@@ -28,21 +29,21 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class AssignPreviewComponent implements OnInit {
   @ViewChild("notesModal") notesModal: NgbModal;
+  @ViewChild("imgModal") imgModal: NgbModal;
+
   onePreview: any;
-  // imgChangeEvent:any;
+  imgChangeEvent: any;
   image: any;
   notesForm: FormGroup;
+  imgChangeEvt: any = "";
 
+  imageUrl: any;
   constructor(
-    private formBuilder: FormBuilder,
     public translate: TranslateService,
     private sharedService: SharedService,
     private _UserService: UserService,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private _Router: Router,
-    private _ClientService: ClientService,
-    private _AssignmentService: AssignmentService,
     private _PreviewService: PreviewService,
     private modalService: NgbModal,
     private fb: FormBuilder
@@ -69,9 +70,15 @@ export class AssignPreviewComponent implements OnInit {
     this.modalService.open(this.notesModal, { centered: true, size: "md" });
     this.image = image;
   }
+  openImageModal(image) {
+    this.modalService.open(this.imgModal, { centered: true, size: "lg" });
+    this.image = image
+    this.imageUrl = this.image.attachment_path;
+  }
   likeImg(image) {
     let formData = {
       status: "like",
+      _method: 'put'
     };
     this._PreviewService
       .updatePreview(this.onePreview.id, image.id, formData)
@@ -98,9 +105,11 @@ export class AssignPreviewComponent implements OnInit {
     if (formValue.notes == "") {
       let formData = {
         status: "dislike",
+        _method: 'put'
+
       };
       this._PreviewService
-        .updatePreview(this.onePreview.id, this.image.id, formData)
+        .dislikePreview(this.onePreview.id, this.image.id, formData)
         .subscribe(
           (res) => {
             this.translate.get("VALIDATION").subscribe((translate) => {
@@ -125,9 +134,10 @@ export class AssignPreviewComponent implements OnInit {
       let formData = {
         status: "dislike",
         notes: formValue.notes,
+        _method: 'put'
       };
       this._PreviewService
-        .updatePreview(this.onePreview.id, this.image.id, formData)
+        .dislikePreview(this.onePreview.id, this.image.id, formData)
         .subscribe(
           (res) => {
             this.translate.get("VALIDATION").subscribe((translate) => {
@@ -151,6 +161,35 @@ export class AssignPreviewComponent implements OnInit {
         );
     }
   }
+  save(event) {
+    let file = new File([event], 'attachment', { type: "image/png" });
+    let formData = new FormData()
+    formData.append('_method', 'put')
+    formData.append('status', 'zoom');
+    formData.append('photo', file);
+    this._PreviewService
+      .updatePreview(this.onePreview.id, this.image.id, formData)
+      .subscribe(
+        (res) => {
+          this.translate.get("VALIDATION").subscribe((translate) => {
+            this.sharedService.notification(`${translate.IMAGE_EDIT}`, "bg-green");
+          });
+          this.modalService.dismissAll(this.imgModal);
+          this.cdr.detectChanges();
+        },
+        (err) => {
+          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+            this.sharedService.notification(
+              `${translate[err.error]}`,
+              "bg-red"
+            );
+          });
+        }
+      );
+  }
+  cancel() {
+    this.modalService.dismissAll(this.imgModal);
+  }
 
-  // cropImg(event){}
+
 }

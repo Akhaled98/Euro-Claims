@@ -22,7 +22,7 @@ import { AssignPreviewComponent } from './component/assign-preview/assign-previe
 
 import { NgModule } from '@angular/core';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { ImageDrawingModule } from 'ngx-image-drawing';
 @NgModule({
   declarations: [PreviewsComponent, AssignPreviewComponent],
   imports: [
@@ -43,7 +43,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatNativeDateModule,
     MatDatepickerModule,
     MatTimepickerModule,
-    ImageCropperModule
+    ImageCropperModule,
+    ImageDrawingModule
+
   ]
 })
 export class PreviewsModule { }
