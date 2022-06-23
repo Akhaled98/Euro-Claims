@@ -31,6 +31,17 @@ export class PreviewService {
   }
   updatePreview(previewId,attatchmentId,previewData) {
     let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.post(
+      `${environment.apiUrl}/api/dashboard/admins/examination/${previewId}/attachments/${attatchmentId}`,previewData,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+  dislikePreview(previewId,attatchmentId,previewData) {
+    let token: any = localStorage.getItem("userToken");
     return this._HttpClient.put(
       `${environment.apiUrl}/api/dashboard/admins/examination/${previewId}/attachments/${attatchmentId}`,previewData,
       {

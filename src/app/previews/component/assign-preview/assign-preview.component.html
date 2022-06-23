@@ -13,7 +13,7 @@
     </div>
     <div class="row px-2">
         <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CLIENT_NAME' | translate}} : {{onePreview?.assignment.customer_name}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CLIENT_NAME' | translate}} : {{onePreview?.assignment.customer_name}}
         </div>
     </div>
     <div class="row">
@@ -23,22 +23,22 @@
     </div>
     <div class="row px-2">
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_DOCUMENT' | translate}} : {{onePreview?.assignment.car_document_number}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_DOCUMENT' | translate}} : {{onePreview?.assignment.car_document_number}}
         </div>
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_VIN' | translate}} : {{onePreview?.assignment.car_vin_decoder}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_VIN' | translate}} : {{onePreview?.assignment.car_vin_decoder}}
         </div>
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_PLATE' | translate}} : {{onePreview?.assignment.car_plate_number}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_PLATE' | translate}} : {{onePreview?.assignment.car_plate_number}}
         </div>
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_ENGINE' | translate}} : {{onePreview?.assignment.car_engine_number}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_ENGINE' | translate}} : {{onePreview?.assignment.car_engine_number}}
         </div>
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_COLOR' | translate}} : {{onePreview?.assignment.car_color}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_COLOR' | translate}} : {{onePreview?.assignment.car_color}}
         </div>
         <div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 mb-2">
-            <i class="icon-checkmark4 text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_MODEL' | translate}} : {{onePreview?.assignment.car_model}}
+            <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i> &nbsp; {{ 'PAGE.ASSIGNMENT.CAR_MODEL' | translate}} : {{onePreview?.assignment.car_model}}
         </div>
     </div>
     <div class="row">
@@ -74,18 +74,13 @@
                         |translate}}</button>
                 </div>
                 <div class="col-md-3">
-                    <button class="p-2 actions"><i class="px-1 fa-solid fa-magnifying-glass"></i> {{'PAGE.PREVIEWS.ZOOM'
+                    <button (click)="openImageModal(image)" class="p-2 actions"><i
+                            class="px-1 text-info fa-solid fa-magnifying-glass"></i> {{'PAGE.PREVIEWS.ZOOM'
                         |translate}}</button>
                 </div>
             </div>
         </div>
-        <!-- <image-cropper [imageChangedEvent]="imgChangeEvent" [aspectRatio]="4/4" [maintainAspectRatio]="true"
-            [resizeToWidth]="256" format="png" (imageCropped)="cropImg($event)" (imageLoaded)="imgLoad()"
-            (cropperReady)="initCropper()" (loadImageFailed)="imgFailed()"></image-cropper>
-        <img [src]="cropImgPreview" alt=""> -->
-
     </div>
-
 </div>
 <ng-template #notesModal let-modal>
     <div class="modal-header">
@@ -109,5 +104,14 @@
             </div>
         </form>
 
+    </div>
+</ng-template>
+<ng-template #imgModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{'PAGE.PREVIEWS.ZOOM_IMAGE'|translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <image-drawing  [src]="imageUrl" outputMimeType="'image/jpeg'" outputQuality="0.8" (save)="save($event)" (cancel)="cancel()">
+        </image-drawing>
     </div>
 </ng-template>
