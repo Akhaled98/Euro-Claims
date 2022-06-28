@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://198.38.89.8:8020',
+  apiUrl: window["env"]["apiUrl"] || "default",
+  debug: window["env"]["debug"] || false
 };
 
 /*
