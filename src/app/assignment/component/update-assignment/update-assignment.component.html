@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-3 form-group">
                         <label for="name">{{'PAGE.ASSIGNMENT.CLIENT_NAME' | translate}} :</label>
-                        <input formControlName='customer_name' type="text" class="form-control" id="name">
+                        <input formControlName='customer_name' type="text" class="form-control" id="name" >
                         <div *ngIf="newAssignmentForm.get('customer_name')?.errors != null && newAssignmentForm.get('customer_name')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('customer_name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>

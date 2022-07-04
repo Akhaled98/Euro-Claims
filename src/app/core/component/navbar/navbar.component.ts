@@ -4,6 +4,7 @@ import { NgbDropdownConfig } from "@ng-bootstrap/ng-bootstrap";
 import { AuthService } from "src/app/authentication/service/auth.service";
 import { TranslateService } from "@ngx-translate/core";
 import { SharedService } from "src/app/shared/shared.service";
+import { ProfileService } from "src/app/profile/profile.service";
 
 @Component({
   selector: "app-navbar",
@@ -16,18 +17,29 @@ export class NavbarComponent implements OnInit {
   public sidebarToggled = false;
   error = "";
   showUserOptions: boolean = false;
+  profileData: any;
+
   constructor(
     config: NgbDropdownConfig,
     private _AuthService: AuthService,
     public translate: TranslateService,
     private _Router: Router,
     private _SharedService: SharedService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _ProfileServiceL: ProfileService
   ) {
     config.placement = "bottom-right";
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getProfileData();
+  
+  }
+  getProfileData() {
+    this._ProfileServiceL.getProfileData().subscribe((res: any) => {
+      this.profileData = res.data;
+    });
+  }
 
   // toggle sidebar in small devices
   toggleOffcanvas() {
@@ -57,49 +69,46 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // toggle right sidebar
-  toggleRightSidebar() {
-    document.querySelector("#right-sidebar").classList.toggle("open");
-  }
+
 
   logout() {
-      this._AuthService.logout().subscribe(
-        (response) => {
-          if (response["status"] == "success") {
-            this._AuthService.currenetUser.next(null);
-            this._AuthService.displayController();
-            localStorage.removeItem("userToken");
-            this._Router.navigate(["/authentication/login"]);
-            this.translate.get("VALIDATION").subscribe((translate) => {
-              this._SharedService.notification(
-                `${translate.SIGN_OUT}`,
-                "bg-green"
-              );
-            });
-          }
-        },
-        (err) => {
-          if(err.error!=null){
-            this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
-              this._SharedService.notification(
-                `${translate[err.error]}`,
-                "bg-red"
-              );
-            });
-          }else{
-            this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
-              this._SharedService.notification(
-                `${translate[`Unauthenticated.`]}`,
-                "bg-red"
-              );
-            });
-          }
-          if (err.status == "failed") {
-            this.error = err.error;
-          } 
+    this._AuthService.logout().subscribe(
+      (response) => {
+        if (response["status"] == "success") {
+          this._AuthService.currenetUser.next(null);
+          this._AuthService.displayController();
+          localStorage.removeItem("userToken");
+          this._Router.navigate(["/authentication/login"]);
+          this.translate.get("VALIDATION").subscribe((translate) => {
+            this._SharedService.notification(
+              `${translate.SIGN_OUT}`,
+              "bg-green"
+            );
+          });
         }
-      );
-    
-  
+      },
+      (err) => {
+        if (err.error != null) {
+          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+            this._SharedService.notification(
+              `${translate[err.error]}`,
+              "bg-red"
+            );
+          });
+        } else {
+          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+            this._SharedService.notification(
+              `${translate[`Unauthenticated.`]}`,
+              "bg-red"
+            );
+          });
+        }
+        if (err.status == "failed") {
+          this.error = err.error;
+        }
+      }
+    );
+
+
   }
 }

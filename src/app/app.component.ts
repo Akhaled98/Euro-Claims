@@ -21,12 +21,14 @@ export class AppComponent implements OnInit {
   showNavbar: boolean = false;
   showSettings: boolean = false;
   isLoading: boolean;
+ 
 
   constructor(
     private router: Router,
     translate: TranslateService,
     private _AuthService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+
   ) {
 
     
@@ -49,7 +51,6 @@ export class AppComponent implements OnInit {
               this.showNavbar = false;
             } else {
               this.showNavbar = true;
-              console.log("1",this.showNavbar)
             }
             this.cdr.detectChanges();
           });
@@ -159,5 +160,7 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
+    
   }
+ 
 }

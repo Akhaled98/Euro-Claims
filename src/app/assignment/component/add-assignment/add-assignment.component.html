@@ -272,5 +272,123 @@
 
 
         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <mat-stepper linear #stepper>
+          
+            <mat-step [stepControl]="HFormGroup1">
+                <form [formGroup]="HFormGroup1">
+                    <ng-template matStepLabel>
+                        {{ "PAGE.manage-employee.tabs.citizens" | translate }}
+                    </ng-template>
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-labeled btn-labeled-right btn-primary heading-btn" matStepperNext [disabled]="!HFormGroup1.valid">
+                                {{'GENERAL.NEXT' |
+                                translate}}
+                                <b><i class="ti-arrow-left
+                                    "></i></b>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+         
+            <mat-step [stepControl]="HFormGroup2">
+                <form [formGroup]="HFormGroup2">
+                    <ng-template matStepLabel>
+                        {{ "PAGE.manage-employee.tabs.educationalQualification" | translate }}
+                    </ng-template>
+                    <div class="row">
+                       
+                        <div class="row">
+                            <div class="col-md-6  d-flex justify-content-start">
+                                <button class="btn btn-labeled btn-labeled-left btn-danger heading-btn ml-1 mr-2" type="button" matStepperPrevious>
+                                    <b><i class="ti-arrow-right"></i></b>
+                                    {{'GENERAL.BACK'
+                                    |translate}}
+                                </button>
+                            </div>
+                            <div class="col-md-6 d-flex  justify-content-end">
+                                <button class="btn btn-labeled btn-labeled-right btn-primary heading-btn" matStepperNext [disabled]="!HFormGroup2.valid">
+                                    {{'GENERAL.NEXT' |
+                                    translate}}
+                                    <b><i class="ti-arrow-left
+                                        "></i></b>
+                                </button>
+                            </div>
+                        </div>
+        
+                    </div>
+                </form>
+            </mat-step>
+            
+            <mat-step [stepControl]="HFormGroup3">
+                <form [formGroup]="HFormGroup3">
+                    <ng-template matStepLabel>{{ "PAGE.manage-employee.tabs.foreignEmployees" | translate }}
+                    </ng-template>
+                    <div class="row">
+                      
+                       
+                        <div class="row">
+                            <div class="col-md-6  d-flex justify-content-start">
+                                <button class="btn btn-labeled btn-labeled-left btn-danger heading-btn ml-1 mr-2" type="button" matStepperPrevious>
+                                    <b><i class="ti-arrow-right"></i></b>
+                                    {{'GENERAL.BACK'
+                                    |translate}}
+                                </button>
+                            </div>
+                            <div class="col-md-6 d-flex  justify-content-end mt-2">
+                                <button class="btn btn-labeled btn-labeled-right btn-primary heading-btn" matStepperNext [disabled]="!HFormGroup3.valid">
+                                    {{'GENERAL.NEXT' |
+                                    translate}}
+                                    <b><i class="ti-arrow-left
+                                        "></i></b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            
+            <mat-step [stepControl]="HFormGroup4" state="final">
+                <form [formGroup]="HFormGroup4">
+                    <ng-template matStepLabel>
+                        {{ "PAGE.manage-employee.tabs.recruitment" | translate }}
+                    </ng-template>
+                    <div class="row">
+                     
+                     
+                        <div class="row">
+                            <div class="col-md-6 d-flex  justify-content-start">
+                                <button class="btn btn-labeled btn-labeled-right btn-danger heading-btn" [routerLink]="['/emp/emp-list']" type="button">
+                                    {{ "GENERAL.CANCEL" | translate }}
+                                    <b><i class="ti-close"></i></b>
+                                </button>
+                            </div>
+                            <div class="col-md-6  d-flex justify-content-end">
+                                <button class="btn btn-labeled btn-labeled-right btn-primary heading-btn" type="submit" [disabled]="!HFormGroup4.valid" (click)="submit()">
+                                    {{ "GENERAL.SAVE" | translate }}
+                                    <b><i class="icon-floppy-disk"></i></b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper> -->
     </div>
 </div>

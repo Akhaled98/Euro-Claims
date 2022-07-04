@@ -23,7 +23,7 @@ export class ClientComponent implements OnInit {
     { name: "status", prop: "status" },
 
   ];
-  dataInsurance = [];
+  dataInsurance:any=null;
   messages = { emptyMessage: "", totalMessage: "" };
 
   constructor(
