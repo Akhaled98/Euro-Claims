@@ -1,4 +1,5 @@
-import {  Component, OnInit } from '@angular/core';
+import {  ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ProfileService } from 'src/app/profile/profile.service';
 
 
 @Component({
@@ -9,6 +10,8 @@ import {  Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   
   public parentId = "";
+  profileData: any;
+
   
   clickedMenu(event) {
     var target = event.currentTarget;
@@ -21,7 +24,10 @@ export class SidebarComponent implements OnInit {
   }
   
     
-    constructor() {
+
+
+    constructor(private _ProfileServiceL: ProfileService,
+      private cdr: ChangeDetectorRef) {
     
    }
   ngOnInit() {
@@ -39,9 +45,18 @@ export class SidebarComponent implements OnInit {
         }
       });
     });
+    this.getProfileData();
+    this.cdr.detectChanges()
+
+
 
    
     
+  }
+  getProfileData() {
+    this._ProfileServiceL.getProfileData().subscribe((res: any) => {
+      this.profileData = res.data;
+    });
   }
 
 }

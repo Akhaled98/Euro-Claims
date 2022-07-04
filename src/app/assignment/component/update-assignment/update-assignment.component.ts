@@ -38,7 +38,27 @@ export class UpdateAssignmentComponent implements OnInit {
     if (id) {
       this._AssignmentService.getAssignmentById(id).subscribe((res) => {
         this.oneAssignment = res.data;
-        this.newAssignmentForm.patchValue(res.data);
+        // this.newAssignmentForm.patchValue(res.data);
+        this.newAssignmentForm.get('assigned_to').setValue(res.data?.assigned_to?.id)
+        this.newAssignmentForm.get('customer_name').setValue(res.data.customer_name);
+        this.newAssignmentForm.get('customer_phone').setValue(res.data.customer_phone);
+        this.newAssignmentForm.get('customer_address').setValue(res.data.customer_address);
+        this.newAssignmentForm.get('insurance_company_id').setValue(res.data.insurance_company_id);
+        this.newAssignmentForm.get('car_document_number').setValue(res.data.car_document_number);
+        this.newAssignmentForm.get('car_vin_decoder').setValue(res.data.car_vin_decoder);
+        this.newAssignmentForm.get('car_plate_number').setValue(res.data.car_plate_number);
+        this.newAssignmentForm.get('car_engine_number').setValue(res.data.car_engine_number);
+        this.newAssignmentForm.get('car_color').setValue(res.data.car_color);
+        this.newAssignmentForm.get('car_model').setValue(res.data.car_model);
+        this.newAssignmentForm.get('examination_type_id').setValue(res.data.examination_type_id);
+        this.newAssignmentForm.get('examination_location_type_id').setValue(res.data.examination_location_type_id);
+        this.newAssignmentForm.get('examination_location_address').setValue(res.data.examination_location_address);
+        this.newAssignmentForm.get('contact_person_name').setValue(res.data.contact_person_name);
+        this.newAssignmentForm.get('contact_person_phone').setValue(res.data.contact_person_phone);
+        this.newAssignmentForm.get('examination_date').setValue(res.data.examination_date);
+        // this.newAssignmentForm.get('examination_from_time').setValue(res.data.examination_from_time);
+        // this.newAssignmentForm.get('examination_to_time').setValue(res.data.examination_to_time);
+        
       });
     }
   }

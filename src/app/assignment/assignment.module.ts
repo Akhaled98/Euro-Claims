@@ -16,9 +16,17 @@ import { UpdateAssignmentComponent } from "./component/update-assignment/update-
 import { ColorPickerModule } from "ngx-color-picker";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatTimepickerModule } from "mat-timepicker";
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatNativeDateModule } from "@angular/material/core";
+// import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+
+
+
+
 @NgModule({
   declarations: [
     AssignmentComponent,
@@ -43,6 +51,7 @@ import { MatTimepickerModule } from "mat-timepicker";
     MatNativeDateModule,
     MatDatepickerModule,
     MatTimepickerModule,
+    MatStepperModule
   ],
 })
-export class AssignmentModule {}
+export class AssignmentModule { }

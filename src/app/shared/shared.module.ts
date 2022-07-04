@@ -13,6 +13,7 @@ import { DropdownModule } from "ng2-dropdown";
 import { BrowserModule } from "@angular/platform-browser";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 
+
 @NgModule({
   declarations: [SharedComponent],
   imports: [
@@ -27,7 +28,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     ChartsModule,
     DropdownModule,
     BrowserModule,
-    MatSnackBarModule
+    MatSnackBarModule, 
   ],
   exports: [
     CommonModule,
@@ -41,7 +42,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     ChartsModule,
     DropdownModule,
     BrowserModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

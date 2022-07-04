@@ -6,6 +6,7 @@ import { SharedService } from "./../../../shared/shared.service";
 import { TranslateService } from "@ngx-translate/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+
 @Component({
   selector: "app-add-assignment",
   templateUrl: "./add-assignment.component.html",
@@ -13,6 +14,10 @@ import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 })
 export class AddAssignmentComponent implements OnInit {
   newAssignmentForm: FormGroup;
+  HFormGroup1: FormGroup;
+  HFormGroup2: FormGroup;
+  HFormGroup3: FormGroup;
+  HFormGroup4: FormGroup;
   passwordFlag: boolean = false;
   oneUser: any;
   insuranceCompanyFlag: boolean = false;
@@ -35,6 +40,7 @@ export class AddAssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.initForms();
     this.getActiveCompany();
     this.getExaminationType();
     this.getExaminationLocationType();
@@ -62,6 +68,52 @@ export class AddAssignmentComponent implements OnInit {
       examination_date: [null],
       examination_from_time: [null],
       examination_to_time: [null],
+    });
+  }
+
+  initForms() {
+    this.HFormGroup1 = this.formBuilder.group({
+      arFullName: ['', Validators.required],
+      enFullName: ['', Validators.required],
+      empNumber: [null],
+      gender: [null],
+      birthDate: [null],
+      birthPlace: [null],
+      religion: [null],
+      mobileNumber: ['', Validators.required],
+      homePhoneNumber: ['', Validators.required],
+      nationality: [null],
+      cityId: [null],
+      countryId: [null],
+    });
+    this.HFormGroup2 = this.formBuilder.group({
+      educationalQualification: [null],
+      faculty: [null],
+      graduationYear: [null],
+      specialization: [null],
+    });
+
+    this.HFormGroup3 = this.formBuilder.group({
+      contractCareer: [null],
+      contractType: [null],
+      contractPeriod: [null],
+      contractStDate: [null],
+      passportNo: [null],
+      passportStDate: [null],
+      passportNdDate: [null],
+      workStDate: [null],
+      migrationNo: [null],
+      migrationStDate: [null],
+      migrationNdDate: [null],
+      entryNo: [null],
+      guarantorId: [null]
+
+    });
+    this.HFormGroup4 = this.formBuilder.group({
+      jobId: [null],
+      unitId: [null],
+      accountId: [null],
+
     });
   }
   getActiveCompany() {

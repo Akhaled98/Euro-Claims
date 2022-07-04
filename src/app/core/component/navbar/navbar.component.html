@@ -1,13 +1,13 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" routerLink="/"><img src="assets/images/logo.svg" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" routerLink="/"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo" routerLink="/"><img  src="assets/images/dashboard/logeEuro.jpg" alt="logo" /></a>
+        <!-- <a class="navbar-brand brand-logo-mini" routerLink="/"><img src="assets/images/logo-mini.svg" alt="logo" /></a> -->
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" (click)="toggleSidebar()">
       <span class="mdi mdi-menu"></span>
     </button>
-        <div class="search-field d-none d-md-block">
+        <!-- <div class="search-field d-none d-md-block">
             <form class="d-flex align-items-center h-100" action="#">
                 <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
@@ -16,16 +16,16 @@
                     <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
                 </div>
             </form>
-        </div>
+        </div> -->
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown" ngbDropdown>
                 <a class="nav-link dropdown-toggle" id="profileDropdown" ngbDropdownToggle>
                     <div class="nav-profile-img">
-                        <img src="assets/images/faces/face1.jpg" alt="image">
+                        <img src="assets/images/Profile_avatar_placeholder_large.png" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
-                        <p class="mb-1 text-black" translate>David Greymaax</p>
+                        <p class="mb-1 text-black" translate>{{profileData?.name}}</p>
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" ngbDropdownMenu aria-labelledby="profileDropdown">
@@ -38,10 +38,10 @@
                     <a class="dropdown-item" [routerLink]="'/authentication/editpassword'" translate>
                         <i class="mdi mdi-cached mr-2 text-success"></i>{{'PAGE.PROFILE_DATA.CHANE_PASSWORD' |translate}}
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" (click)="logout()" translate>
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"  translate>
                         <i class="mdi mdi-logout mr-2 text-primary"></i> Signout
-                    </a>
+                    </a> -->
                 </div>
             </li>
             <li class="nav-item dropdown" ngbDropdown>
@@ -134,14 +134,10 @@
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
                 <a class="nav-link">
-                    <i class="mdi mdi-power"></i>
+                    <i (click)="logout()" class="mdi mdi-power"></i>
                 </a>
             </li>
-            <li class="nav-item nav-settings d-none d-lg-block" (click)="toggleRightSidebar()">
-                <a class="nav-link">
-                    <i class="mdi mdi-format-line-spacing"></i>
-                </a>
-            </li>
+           
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" (click)="toggleOffcanvas()">
       <span class="mdi mdi-menu"></span>

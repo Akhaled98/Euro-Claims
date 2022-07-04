@@ -8,15 +8,15 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { ErrorInterceptor } from "./core/interceptor/error.interceptor";
 import { JwtInterceptor } from "./core/interceptor/jwt.interceptor";
 
-
 import { AppComponent } from "./app.component";
 import { ToastrModule } from "ngx-toastr";
 import { CoreModule } from "./core/core.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/','.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -35,7 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedModule,
     BrowserAnimationsModule,
   ],
-  exports:[
+  exports: [
     AppRoutingModule
   ],
   providers: [
@@ -44,4 +44,5 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
