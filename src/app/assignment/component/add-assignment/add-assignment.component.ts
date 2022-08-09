@@ -69,6 +69,28 @@ export class AddAssignmentComponent implements OnInit {
       examination_from_time: [null],
       examination_to_time: [null],
     });
+    this.HFormGroup1 = this.formBuilder.group({
+      id: [null],
+      customer_name: [null, [Validators.required]],
+      customer_phone: [null, [Validators.required]],
+      customer_address: [null, [Validators.required]],
+      insurance_company_id: [null, [Validators.required]],
+      car_document_number: [null, [Validators.required]],
+      car_vin_decoder: [null, [Validators.required]],
+      car_plate_number: [null, [Validators.required]],
+      car_engine_number: [null, [Validators.required]],
+      car_color: [null, [Validators.required]],
+      car_model: [null, [Validators.required]],
+      examination_type_id:[null,[Validators.required]],
+      examination_location_type_id:[null,[Validators.required]],
+      examination_location_address:[null,[Validators.required]],
+      contact_person_name: [null, [Validators.required]],
+      contact_person_phone: [null, [Validators.required]],
+      assigned_to: [null],
+      examination_date: [null],
+      examination_from_time: [null],
+      examination_to_time: [null],
+    });
   }
 
   initForms() {
