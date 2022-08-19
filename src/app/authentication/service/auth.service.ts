@@ -32,7 +32,7 @@ export class AuthService {
     let token: any = localStorage.getItem("userToken");
     this.currenetUser.next(jwtDecode(token));
     this.showController();
-    this.idleLogOut(900000)
+    // this.idleLogOut(900000)
   }
 
 
@@ -67,20 +67,20 @@ export class AuthService {
       }
     );
   }
-  idleLogOut(expirationDate: number) {
-    setTimeout(() => {
-      this.currenetUser.next(null);
-      this.displayController();
-      localStorage.removeItem("userToken");
-      this._Router.navigate(["/authentication/login"]);
-      this.translate.get("VALIDATION").subscribe((translate) => {
-        this._SharedService.notification(
-          `${translate.SIGN_OUT}`,
-          "bg-green"
-        );
-      });
-    }, expirationDate);
-  }
+  // idleLogOut(expirationDate: number) {
+  //   setTimeout(() => {
+  //     this.currenetUser.next(null);
+  //     this.displayController();
+  //     localStorage.removeItem("userToken");
+  //     this._Router.navigate(["/authentication/login"]);
+  //     this.translate.get("VALIDATION").subscribe((translate) => {
+  //       this._SharedService.notification(
+  //         `${translate.SIGN_OUT}`,
+  //         "bg-green"
+  //       );
+  //     });
+  //   }, expirationDate);
+  // }
 
 
 

@@ -43,10 +43,29 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <h3 class="font-weight-bold">{{'PAGE.PREVIEWS.DISCRIPTION' | translate}} :-</h3>
+            <form [formGroup]="discriptionForm" #formDirective="ngForm" (ngSubmit)="onSubmitDiscription(discriptionForm,formDirective)">
+                <div class="row d-flex justify-content-start align-items-center">
+                    <div class="input-field col s12 d-none">
+                        <input formControlName="id" class="form-control" type="hidden">
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 ">
+                        <textarea  class="form-control" formControlName="discription" name="" id="" cols="25" ></textarea>
+                    </div>
+                    <div class="py-1 mx-2">
+                        <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" type="submit"
+                            [disabled]="discriptionForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>  
+    </div>
+    <div class="row py-3">
+        <div class="col-md-12">
             <h3 class="font-weight-bold">{{'PAGE.PREVIEWS.ATTATCHES' | translate}} :-</h3>
         </div>
     </div>
-    <div *ngFor="let image of onePreview?.attachments" class="row mt-3">
+    <div *ngFor="let image of attatchment" class="row mt-3">
         <div class="col-md-7 mx-3 mt-1">
             <div class="row mx-3 ">
                 <div class="col-md-2  d-flex justify-content-center">
@@ -54,13 +73,14 @@
                 </div>
                 <!-- <img src="../../../../assets/images/Profile_avatar_placeholder_large.png" class="logo" alt=""> -->
                 <div class="col-md-10">
-                    <h4 class="font-weight-bold">{{'PAGE.PREVIEWS.UPLOAD_BY' |translate}} : {{onePreview?.assignment.assigned_to}}
+                    <h4 class="font-weight-bold">{{'PAGE.PREVIEWS.UPLOAD_BY' |translate}} : {{onePreview?.assignment?.assigned_to?.name}}
                     </h4>
                     <p class="text-lead text-muted">{{image.created_at}} {{image.created_since}}</p>
                 </div>
             </div>
             <div class="row mx-3 pb-3  design">
-                <img class="w-100" [src]="image.attachment_path">
+                <img *ngIf="image?.newSubAttatchment  != undefined || image?.newSubAttatchment != null" class="w-100" [src]="image?.newSubAttatchment?.attachment_path">
+                <img *ngIf="image?.newSubAttatchment  == undefined || image?.newSubAttatchment == null" class="w-100" [src]="image.attachment_path">
             </div>
             <div class="row mx-3 d-flex justify-content-between align-items-center design">
                 <div class="col-md-3 shape">
@@ -111,7 +131,7 @@
         <h4 class="modal-title">{{'PAGE.PREVIEWS.ZOOM_IMAGE'|translate}}</h4>
     </div>
     <div class="modal-body">
-        <image-drawing  [src]="imageUrl" outputMimeType="'image/jpeg'" outputQuality="0.8" (save)="save($event)" (cancel)="cancel()">
-        </image-drawing>
+        <image-drawing  [src]="updatedImageUrl" outputMimeType="'image/jpeg'" outputQuality="0.8" (save)="save($event)" (cancel)="cancel()">
+        </image-drawing> 
     </div>
 </ng-template>
