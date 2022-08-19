@@ -18,11 +18,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatTimepickerModule } from "mat-timepicker";
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatNativeDateModule, MatRippleModule } from "@angular/material/core";
 import { MatButtonModule } from "@angular/material/button";
-// import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 
@@ -53,9 +50,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatDatepickerModule,
     MatTimepickerModule,
     MatButtonModule,
-    MatRippleModule,
-    BrowserAnimationsModule,
-    MatStepperModule
   ],
 })
 export class AssignmentModule { }

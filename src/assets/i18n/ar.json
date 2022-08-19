@@ -270,6 +270,7 @@
             "DETAILS": "تفاصيل المعاينة",
             "INSURANCE_COMPANY_DATA": "بيانات  مكان المعاينة",
             "ATTATCHES": "ملفات المعاينة",
+            "DISCRIPTION": "وصف المعاينة",
             "UPLOAD_BY": "رفع بواسطة",
             "LIKE": "اعجبنى",
             "DISIKE": "لم يعجبنى",
@@ -302,7 +303,8 @@
         "ASSIGNMENT_UPDATED_SUCCECFULLY": "تم تعديل التكليف بنجاح",
         "LIKE_OK": "تم الاعجاب بنجاح",
         "DISLIKE_OK": "تم إلغاء الاعجاب بنجاح",
-        "IMAGE_EDIT":"تم تعديل صورة المعاينة  بنجاح"
+        "IMAGE_EDIT":"تم تعديل صورة المعاينة  بنجاح",
+        "DISCRIPTION_DATA":"تم إضافة وصف للمعاينة  بنجاح"
 
 
     },
