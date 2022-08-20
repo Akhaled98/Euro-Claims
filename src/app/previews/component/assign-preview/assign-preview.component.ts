@@ -54,14 +54,14 @@ export class AssignPreviewComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder
   ) {
-    this.id = +this.activatedRoute.snapshot.params.id || null;
-    if (this.id) {
-      this.getPreviewData();
-    }
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.id = +this.activatedRoute.snapshot.params.id || null;
+    if (this.id) {
+      this.getPreviewData();
+    }
   }
   getPreviewData() {
     this._PreviewService.getPreviewById(this.id).subscribe((res) => {
@@ -73,6 +73,7 @@ export class AssignPreviewComponent implements OnInit {
           item.newSubAttatchment = item.sub_attachments[index]
         }
       })
+      this.discriptionForm.get('discription').setValue(this.onePreview?.description)
       this.cdr.detectChanges();
     });
   }
