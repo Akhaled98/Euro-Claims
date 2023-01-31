@@ -1,41 +1,44 @@
-<div class="container-fluid">
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
     <div class="row">
-        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+        <div class="col-lg-12 d-flex justify-content-between content_header">
             <div class="col-md-3">
-                <h1 class="font-weight-bold">{{'PAGE.USERS.TITLE' |translate}}</h1>
+                <h2 class="font-weight-bold content_title">{{'PAGE.USERS.TITLE' |translate}}</h2>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" [routerLink]="'/user/createUser'">{{'PAGE.USERS.NEW_USER' |translate}}</button>
+                <button class="btn btn-info add_button" [routerLink]="'/user/createUser'">{{'PAGE.USERS.NEW_USER' |translate}}</button>
             </div>
         </div>
-        <div class="col-sm-12 my-4" *ngIf="dataUser!=null">
-            <ngx-datatable #table class="material" [rows]="dataUser" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
-                <ngx-datatable-column [sortable]="true" prop='name' name="{{'PAGE.USERS.NAME'  | translate}}">
-                </ngx-datatable-column>
-                <ngx-datatable-column [sortable]="true" prop='email' name="{{'PAGE.USERS.EMAIL'  | translate}}">
-                </ngx-datatable-column>
-                <ngx-datatable-column [sortable]="true" prop='phone' name="{{'PAGE.USERS.PHONE'  | translate}}">
-                </ngx-datatable-column>
-                <ngx-datatable-column [sortable]="true" prop='role' name="{{'PAGE.USERS.ROLE'  | translate}}">
-                </ngx-datatable-column>
-                <ngx-datatable-column [sortable]="true" prop='address' name="{{'PAGE.USERS.ADDRESS'  | translate}}">
-                </ngx-datatable-column>
-                <ngx-datatable-column [sortable]="false" [maxWidth]="70">
-                    <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                        <button class="btn tblActnBtn h-auto " [matMenuTriggerFor]="belowMenu">
-                            <mat-icon class="f-18">menu</mat-icon>
-                        </button>
-                        <mat-menu #belowMenu="matMenu" class="d-flex flex-column align-items-end justify-content-end" yPosition="below" style="height: 10em;">
-                            <button class="text-center" mat-menu-item (click)='editRow(row)'>
-                                {{ 'SYSTEM.UPDATE' |translate}}
-                            </button>
-                            <button class="text-center" mat-menu-item (click)='deleteRow(row)'>
-                                {{ 'SYSTEM.DELETE' |translate}}
-                            </button>
-                        </mat-menu>
-                    </ng-template>
-                </ngx-datatable-column>
-            </ngx-datatable>
+        <div class="col-sm-12 my-4" *ngIf="dataUsers!=null">
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                    <th scope="col">{{'PAGE.USERS.NAME'  | translate}}</th>
+                    <th scope="col">{{'PAGE.USERS.EMAIL'  | translate}}</th>
+                    <th scope="col">{{'PAGE.USERS.PHONE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.USERS.ROLE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.actions'  | translate}}</th>
+                </tr>
+                                </thead>
+                <tbody>
+
+                    <tr *ngFor="let dataUser of dataUsers">
+<td>{{dataUser.name}}</td>
+<td>{{dataUser.email}}</td>
+<td>{{dataUser.phone}}</td>
+<td>{{dataUser.role}}</td>
+<td class="actions">
+
+    <a routerLink="/user/editUser/{{dataUser.id}}" style="margin-left: 10px;"><i class="fas fa-pencil"></i></a>
+    <a style="cursor: pointer;" (click)="deleteRow(dataUser)"><i class="fas fa-trash"></i></a>
+
+</td>
+
+                    </tr>
+
+                 </tbody>
+                 </table>
+                 </div>
         </div>
     </div>
 </div>

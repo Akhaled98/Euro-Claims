@@ -23,7 +23,7 @@ export class ClientComponent implements OnInit {
     { name: "status", prop: "status" },
 
   ];
-  dataInsurance:any=null;
+  dataInsurances:any=null;
   messages = { emptyMessage: "", totalMessage: "" };
 
   constructor(
@@ -38,7 +38,8 @@ export class ClientComponent implements OnInit {
   }
   getAllInsurance() {
     this._ClientService.getAllInsurance().subscribe((res) => {
-      this.dataInsurance = res["data"];
+      this.dataInsurances = res["data"];
+      console.log(this.dataInsurances);
     });
   }
   ngDoCheck() {

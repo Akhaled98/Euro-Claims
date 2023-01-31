@@ -2,3 +2,18 @@
     margin: 0px !important;
     padding: 0px !important;
 }
+
+body{
+    background: #e5edfb !important;
+    }
+
+    @media (max-width:786px) {
+        .dropdowns_menu{
+            display: none !important;
+        } 
+    }
+   
+
+    // .container-scroller{        box-shadow: none !important;
+    //     border-radius: 0 !important;
+    // }

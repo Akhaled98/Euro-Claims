@@ -12,7 +12,14 @@ import { AppComponent } from "./app.component";
 import { ToastrModule } from "ngx-toastr";
 import { CoreModule } from "./core/core.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+  
+// FullCalendarModule.registerPlugins([
+//   dayGridPlugin,
+//   interactionPlugin
+// ]);
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -24,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CoreModule,
     AppRoutingModule,
+    FullCalendarModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

@@ -1,5 +1,8 @@
-<div class="container">
-    <div class="row ">
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
+   
+    <div class="content_header">
+                <h2 class="font-weight-bold content_title">{{newUser_link}}</h2>
+            </div>
 
         <form class="p-3 row" [formGroup]="newInsuranceCompanyForm" (ngSubmit)="onSubmit(newInsuranceCompanyForm)">
             <div class="input-field col s12 d-none">
@@ -7,29 +10,53 @@
             </div>
 
             <div class="col-md-6 form-group">
-                <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
-                <input formControlName='name' type="text" class="form-control" id="name">
+                <div class="row">
+<div class="col-md-4">
+    <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
+</div>
+<div class="col-md-8">
+    <input formControlName='name' type="text" class="form-control" id="name">
+</div>
+                </div>
                 <div *ngIf="newInsuranceCompanyForm.get('name')?.errors != null && newInsuranceCompanyForm.get('name')?.touched" class="alert alert-danger my-2">
                     <p *ngIf="newInsuranceCompanyForm.get('name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                 </div>
             </div>
             <div class="col-md-6 form-group">
+                <div class="row">
+                    <div class="col-md-4">
                 <label for="phone">{{'PAGE.PROFILE_DATA.PHONE' | translate}} :</label>
+                </div>
+                <div class="col-md-8">
                 <input formControlName='phone' type="tel" class="form-control" id="phone">
+                </div>
+                </div>
                 <div *ngIf="newInsuranceCompanyForm.get('phone')?.errors != null && newInsuranceCompanyForm.get('phone')?.touched" class="alert alert-danger my-2">
                     <p *ngIf="newInsuranceCompanyForm.get('phone')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                 </div>
             </div>
             <div class="col-md-6 form-group">
+                <div class="row">
+                    <div class="col-md-4">
                 <label for="address">{{'PAGE.PROFILE_DATA.ADDRESS' | translate}} :</label>
+                </div>
+                <div class="col-md-8">
                 <input formControlName='address' type="text" class="form-control" id="address">
+              </div>
+              </div>
                 <div *ngIf="newInsuranceCompanyForm.get('address')?.errors != null && newInsuranceCompanyForm.get('address')?.touched" class="alert alert-danger my-2">
                     <p *ngIf="newInsuranceCompanyForm.get('address')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                 </div>
             </div>
             <div class="col-md-6 form-group">
+                <div class="row">
+                    <div class="col-md-4">
                 <label for="contact_person">{{'PAGE.USERS.MANAGER_CONTACT' | translate}} :</label>
+                </div>
+                <div class="col-md-8">
                 <input formControlName='contact_person' type="text" class="form-control" id="contact_person">
+         </div>
+         </div>
                 <div *ngIf="newInsuranceCompanyForm.get('contact_person')?.errors != null && newInsuranceCompanyForm.get('contact_person')?.touched" class="alert alert-danger my-2">
                     <p *ngIf="newInsuranceCompanyForm.get('contact_person')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                 </div>
@@ -52,14 +79,13 @@
 
             <div class="col-md-12 d-flex justify-content-end">
                 <div class="py-1 mx-2">
-                    <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" type="submit" [disabled]="newInsuranceCompanyForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
+                    <button class="btn btn-block submit" type="submit" [disabled]="newInsuranceCompanyForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
                 </div>
                 <div class="py-1 mx-2">
-                    <button class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" [routerLink]="'/client/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
+                    <button class="btn btn-block cancel" [routerLink]="'/client/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
                 </div>
             </div>
         </form>
 
 
     </div>
-</div>

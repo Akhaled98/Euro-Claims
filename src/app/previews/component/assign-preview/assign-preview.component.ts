@@ -44,6 +44,13 @@ export class AssignPreviewComponent implements OnInit {
   base64Image: any;
   attatchment: any = [];
   id: any;
+  userType: any;
+  car_color_style={
+    background:'',
+    width:'',
+    height:''
+  }
+
   constructor(
     public translate: TranslateService,
     private sharedService: SharedService,
@@ -54,18 +61,31 @@ export class AssignPreviewComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder
   ) {
+    this.userType = JSON.parse(localStorage.getItem("user details")).role;
   }
 
   ngOnInit(): void {
     this.initForm();
     this.id = +this.activatedRoute.snapshot.params.id || null;
     if (this.id) {
+      if (this.userType === 'Super Admin') {
       this.getPreviewData();
+      }
+
+      if (this.userType === 'Agent') {
+      this.getPreviewDataAgent()
+      }
     }
   }
   getPreviewData() {
     this._PreviewService.getPreviewById(this.id).subscribe((res) => {
       this.onePreview = res.data;
+
+      this.car_color_style.background=this.onePreview?.assignment.car_color;
+      this.car_color_style.width='20px';
+      this.car_color_style.height='20px';
+      console.log("preview assignmnt: ",this.onePreview.assignment)
+      console.log(this.onePreview)
       this.attatchment = this.onePreview?.attachments;
       this.attatchment.filter((item) => {
         if (item.sub_attachments != undefined || item.sub_attachments != null) {
@@ -73,6 +93,30 @@ export class AssignPreviewComponent implements OnInit {
           item.newSubAttatchment = item.sub_attachments[index]
         }
       })
+
+      console.log(this.attatchment)
+      this.discriptionForm.get('discription').setValue(this.onePreview?.description)
+      this.cdr.detectChanges();
+    });
+  }
+
+  getPreviewDataAgent() {
+    this._PreviewService.getPreviewByIdAgent(this.id).subscribe((res) => {
+      this.onePreview = res.data;
+      console.log(this.onePreview)
+      this.car_color_style.background=this.onePreview.assignment.car_color;
+      this.car_color_style.width='25px';
+      this.car_color_style.height='25px';
+      console.log("preview assignmnt: ",this.onePreview.assignment.car_color)
+      this.attatchment = this.onePreview?.attachments;
+      this.attatchment.filter((item) => {
+        if (item.sub_attachments != undefined || item.sub_attachments != null) {
+          let index = item.sub_attachments.length - 1;
+          item.newSubAttatchment = item.sub_attachments[index]
+        }
+      })
+
+      console.log(this.attatchment)
       this.discriptionForm.get('discription').setValue(this.onePreview?.description)
       this.cdr.detectChanges();
     });
@@ -220,7 +264,9 @@ export class AssignPreviewComponent implements OnInit {
     let formData = {
       discription: formValue.discription,
     };
-    this._PreviewService
+
+    if (this.userType === 'Super Admin') {
+      this._PreviewService
       .addPreviewDiscription(this.onePreview?.assignment?.id,formData)
       .subscribe(
         (res) => {
@@ -244,6 +290,34 @@ export class AssignPreviewComponent implements OnInit {
           });
         }
       );
+    }
+
+    if (this.userType === 'Agent') {
+      this._PreviewService
+      .addPreviewDiscriptionAgent(this.onePreview?.assignment?.id,formData)
+      .subscribe(
+        (res) => {
+         
+          this.translate.get("VALIDATION").subscribe((translate) => {
+            this.sharedService.notification(
+              `${translate.DISCRIPTION_DATA}`,
+              "bg-green"
+            );
+          });
+          form.reset();
+          formDirective.resetForm();
+          this.cdr.detectChanges();
+        },
+        (err) => {
+          this.translate.get("BACKEDMESSAGE").subscribe((translate) => {
+            this.sharedService.notification(
+              `${translate[err.error]}`,
+              "bg-red"
+            );
+          });
+        }
+      );
+    }
 
   }
   save(event) {

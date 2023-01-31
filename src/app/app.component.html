@@ -3,10 +3,93 @@
     <div class="container-fluid page-body-wrapper">
         <!-- <app-settings-panel *ngIf="showSettings"></app-settings-panel> -->
         <app-sidebar *ngIf="showSidebar"></app-sidebar>
-        <div class="main-panel" [ngClass]="{ 'main-panel-only' : !showSidebar }">
+        <div class="main-panel " [ngClass]="{ 'main-panel-only' : !showSidebar }">
+            <div class="float-left dropdowns_menu" *ngIf="showNavbar">
+                <ul class="d-lg-block d-sm-none">
+                    <li>
+                            <div ngbDropdown>
+                            <button class="" type="button" id="dropdownMenuOutlineButton2" ngbDropdownToggle>
+                                <i class="fa fa-user-o"></i>
+                            </button>
+                              <div ngbDropdownMenu aria-labelledby="dropdownMenuOutlineButton2" style="padding: 0 !important;">
+                                <a class="dropdown-item" [routerLink]="'/profile'">
+                                    <i class="fa fa-address-card-o ml-2"></i>{{'PAGE.PROFILE_DATA.PROFILE' |translate}}
+                                </a>
+                                <a class="dropdown-item" [routerLink]="'/authentication/editpassword'">
+                                    <i class="fa fa-expeditedssl ml-2"></i>{{'PAGE.PROFILE_DATA.CHANE_PASSWORD' |translate}}
+                                </a>
+                               
+                              </div>
+                              </div>
+                    </li>
+                    <li>
+                        <div ngbDropdown class="notification">
+                        <button class="" type="button" id="dropdownMenuOutlineButton2" ngbDropdownToggle>
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span class="count-symbol bg-success" style="background: #28a745 !important;"></span>
+                        </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownMenuOutlineButton2" class="dropdown_menu">
+                                <h3 class="p-3 mb-0 notification_title" translate>Notifications</h3>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-success">
+                                            <i class="mdi mdi-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                        <h6 class="preview-subject font-weight-normal mb-1" translate>Event today</h6>
+                                        <p class="text-gray ellipsis mb-0" translate>Just a reminder that you have an event today</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-warning">
+                                            <i class="mdi mdi-cog"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                        <h6 class="preview-subject font-weight-normal mb-1" translate>Settings</h6>
+                                        <p class="text-gray ellipsis mb-0" translate>Update dashboard</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-info">
+                                            <i class="mdi mdi-link-variant"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                        <h6 class="preview-subject font-weight-normal mb-1" translate>Launch Admin</h6>
+                                        <p class="text-gray ellipsis mb-0" translate>New admin wow!</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <h6 class="p-3 mb-0 text-center notification_footer" translate> See all notifications</h6>
+                            </div>
+                          </div>
+                </li>
+                <li>
+                    <div ngbDropdown>
+                    <button class="" type="button" id="dropdownMenuOutlineButton2" ngbDropdownToggle>
+                        <i class="fa fa-search"></i>
+                    </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownMenuOutlineButton2" class="search">
+                       <form class="search_form">
+                        <input type="text" placeholder="" class="form-control">
+                        <input type="submit" value="بحث">
+                       </form>
+                      </div>
+                      </div>
+            </li>
+                </ul>
+            </div>
             <div class="content-wrapper">
                 <app-spinner *ngIf="isLoading"></app-spinner>
-                <div contentAnimate *ngIf="!isLoading" class="h-100">
+                <div contentAnimate *ngIf="!isLoading" class="h-100 pages_content">
                     <router-outlet></router-outlet>
                 </div>
             </div>

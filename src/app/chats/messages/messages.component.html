@@ -1,0 +1,58 @@
+<div class="messages">
+    <div class="chat_header">
+        <img src="assets/images/Profile_avatar_placeholder_large.png">
+        <h4>{{username}}</h4>
+    </div>
+    <div class="messages_chat" *ngFor="let message of messages">
+        <div class="chat-day-title">
+            <span class="title">{{message_date}}</span>
+        </div>
+        <ul class="list-unstyled">
+            <li>
+        <div class="conversation-list">
+            <div class="chat-avatar"><img src="assets/images/Profile_avatar_placeholder_large.png" alt="chatvia"></div>
+            <div class="user-chat-content">
+                <div class="ctext-wrap">
+                    <div class="ctext-wrap-content">
+                        <p class="mb-0">Let me know?</p>
+                        <p class="chat-time mb-0"><i class="fas fa-clock"></i> <span
+                            class="align-middle">01:06</span></p>
+                    </div>
+
+                </div>
+                <div class="conversation-name">Patrick Hendricks</div>
+            </div>
+            </div>
+        </li>
+            <li class="left">
+                <div class="conversation-list">
+                    <div class="chat-avatar"><img src="assets/images/Profile_avatar_placeholder_large.png" alt="chatvia">
+                    </div>
+                    <div class="user-chat-content">
+                        <div class="ctext-wrap">
+                            <div class="ctext-wrap-content">
+                                <p class="mb-0">hi...Good Morning!</p>
+                                <p class="chat-time mb-0"><i class="fas fa-clock"></i> <span
+                                        class="align-middle">09:05</span></p>
+                            </div>
+                            <div class="align-self-start dropdown"><a aria-haspopup="true" class=""
+                                    aria-expanded="false"><i class="ri-more-2-fill"></i></a>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"><button
+                                        type="button" tabindex="0" role="menuitem" class="dropdown-item">Copy <i
+                                            class="ri-file-copy-line float-end text-muted"></i></button><button
+                                        type="button" tabindex="0" role="menuitem" class="dropdown-item">Save <i
+                                            class="ri-save-line float-end text-muted"></i></button><button type="button"
+                                        tabindex="0" role="menuitem" class="dropdown-item">Forward <i
+                                            class="ri-chat-forward-line float-end text-muted"></i></button><button
+                                        type="button" tabindex="0" role="menuitem" class="dropdown-item">Delete <i
+                                            class="ri-delete-bin-line float-end text-muted"></i></button></div>
+                            </div>
+                        </div>
+                        <div class="conversation-name">Patricia Smith</div>
+                    </div>
+                    </div>
+                </li>
+            </ul>
+
+    </div>
+</div>

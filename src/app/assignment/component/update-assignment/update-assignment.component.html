@@ -1,47 +1,86 @@
-<div class="container-fluid">
-    <div class="row">
-        <form class="p-3 w-100" [formGroup]="newAssignmentForm" (ngSubmit)="onSubmit(newAssignmentForm)">
+
+
+<div class="container-fluid content_container"  style="padding: 20px 30px !important;position: relative;">
+ 
+    <!-- <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only" id="loading"></span>
+        </div>
+    </div> -->
+
+    <div class="content">
+    <div class="content_header">
+        <h2 class="font-weight-bold content_title">{{'PAGE.ASSIGNMENT.edit_title' |translate}} {{oneAssignment.customer_name}}</h2>
+    </div>
+
+  
+
+            <form id="form" class="pt-3 w-100" [formGroup]="newAssignmentForm" (ngSubmit)="onSubmit(newAssignmentForm)">
             <div class="input-field col s12 d-none">
                 <input formControlName="id" class="form-control" type="hidden">
             </div>
 
-            <div class="row d-flex flex-column  px-3 justify-content-between">
+            <div class="form_header">
+                <h3>{{'PAGE.ASSIGNMENT.CLIENT_DATA' | translate}} :-</h3>
+            </div>
+            <div class="sec">
+                       
                 <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.CLIENT_DATA' | translate}} :-</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="name">{{'PAGE.ASSIGNMENT.CLIENT_NAME' | translate}} :</label>
+                    </div>
+                    <div class="col-md-8">
                         <input formControlName='customer_name' type="text" class="form-control" id="name" >
+                     </div>
+                     </div>
                         <div *ngIf="newAssignmentForm.get('customer_name')?.errors != null && newAssignmentForm.get('customer_name')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('customer_name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
+
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="phone">{{'PAGE.ASSIGNMENT.CLIENT_PHONE' | translate}} :</label>
+                     </div>
+                     <div class="col-md-8">
                         <input formControlName='customer_phone' type="tel" class="form-control" id="phone">
+                        </div>
+                        </div>
                         <div *ngIf="newAssignmentForm.get('customer_phone')?.errors != null && newAssignmentForm.get('customer_phone')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('customer_phone')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="address">{{'PAGE.ASSIGNMENT.CLIENT_ADDRESS' | translate}} :</label>
+                      </div>
+                      <div class="col-md-8">
                         <input formControlName='customer_address' type="text" class="form-control" id="address">
+                    </div>
+                    </div>
                         <div *ngIf="newAssignmentForm.get('customer_address')?.errors != null && newAssignmentForm.get('customer_address')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('customer_address')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-6 form-group" *ngIf="userType!=='Insurance User'">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="company">{{'PAGE.CLIENT.RESPONSIBLE_COMPANY' | translate}} :</label>
+                      </div>
+                      <div class="col-md-8">
                         <ng-select formControlName="insurance_company_id" id="company" [closeOnSelect]="true" [clearable]="false" (change)="patchingInsuranceId($event)">
                             <ng-option *ngFor="let company of allCompany" [value]="company.id">{{company.name}}
                             </ng-option>
                         </ng-select>
+                        </div>
+                        </div>
                         <div *ngIf="newAssignmentForm.get('insurance_company_id')?.errors != null && newAssignmentForm.get('insurance_company_id')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('insurance_company_id')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
@@ -49,115 +88,210 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
 
-            <div class="row d-flex flex-column  px-3 justify-content-between">
+                <div class="form_header">
+                    <h3>{{'PAGE.ASSIGNMENT.CAR_DATA' | translate}} :-</h3>
+                </div>
+                <div class="sec">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.CAR_DATA' | translate}} :-</h3>
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                        <label for="document">{{'PAGE.ASSIGNMENT.CAR_DOCUMENT' | translate}} :</label>
+                   </div>
+                   <div class="col-md-8">   
+                        <input formControlName='car_document_number' type="text" class="form-control" id="document">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 form-group">
-                        <label for="document">{{'PAGE.ASSIGNMENT.CAR_DOCUMENT' | translate}} :</label>
-                        <input formControlName='car_document_number' type="text" class="form-control" id="document">
                         <div *ngIf="newAssignmentForm.get('car_document_number')?.errors != null && newAssignmentForm.get('car_document_number')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('car_document_number')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}</p>
+                    
                         </div>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="vin">{{'PAGE.ASSIGNMENT.CAR_VIN' | translate}} :</label>
+                     </div>
+                     <div class="col-md-8">
                         <input formControlName='car_vin_decoder' type="text" class="form-control" id="vin">
+                    </div>
+                </div>
                         <div *ngIf="newAssignmentForm.get('car_vin_decoder')?.errors != null && newAssignmentForm.get('car_vin_decoder')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('car_vin_decoder')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
+                     
                         </div>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="plate">{{'PAGE.ASSIGNMENT.CAR_PLATE' | translate}} :</label>
+                 </div>
+                 <div class="col-md-8">
                         <input formControlName='car_plate_number' type="text" class="form-control" id="plate">
+                    </div>
+                </div>
                         <div *ngIf="newAssignmentForm.get('car_plate_number')?.errors != null && newAssignmentForm.get('car_plate_number')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('car_plate_number')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
+                      
                         </div>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="engine">{{'PAGE.ASSIGNMENT.CAR_ENGINE' | translate}} :</label>
+               </div>
+               <div class="col-md-8">
                         <input formControlName='car_engine_number' type="text" class="form-control" id="engine">
+                    </div>
+                    </div>
+
                         <div *ngIf="newAssignmentForm.get('car_engine_number')?.errors != null && newAssignmentForm.get('car_engine_number')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('car_engine_number')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                         </div>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="color">{{'PAGE.ASSIGNMENT.CAR_COLOR' | translate}} :</label>
-                        <input [(ngModel)]="color" formControlName='car_color' [cpOKButton]="true" [(colorPicker)]="color" (colorPickerOpen)="onEventLog($event)" (colorPickerClose)="onEventLog($event)" (cpInputChange)="onEventLog($event)" (cpSliderDragStart)="onEventLog($event)"
-                            (cpSliderDragEnd)="onEventLog($event)" class="form-control" id="color">
-                        <div *ngIf="newAssignmentForm.get('car_color')?.errors != null && newAssignmentForm.get('car_color')?.touched" class="alert alert-danger my-2">
+                </div>
+                <div class="col-md-8">
+                        <input formControlName='car_color' [cpOKButton]="true" [(colorPicker)]="oneAssignment.car_color" [style.background]="oneAssignment.car_color" 
+                        (colorPickerOpen)="onEventLog($event)" (colorPickerClose)="onEventLog($event)" (cpInputChange)="onEventLog($event)" (cpSliderDragStart)="onEventLog($event)"
+                            (cpSliderDragEnd)="onEventLog($event)" class="form-control car_color" id="color">
+                
+                        </div>
+                   </div>
+                            <div *ngIf="newAssignmentForm.get('car_color')?.errors != null && newAssignmentForm.get('car_color')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('car_color')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
 
 
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="brand">{{'PAGE.ASSIGNMENT.CAR_BRAND' | translate}} :</label>
+                            </div>
+                            <div class="col-md-7">
+                                <ng-select [searchable]="true" 
+                                formControlName="car_brand_id" id="brand" [closeOnSelect]="true"
+                                    [clearable]="false" (change)="patchingCarBrandhId($event)">
+                                    <ng-option *ngFor="let allCarBrand of allCarBrands" [value]="allCarBrand.id">{{allCarBrand.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div *ngIf="newAssignmentForm.get('car_brand')?.errors != null && newAssignmentForm.get('car_brand')?.touched"
+                            class="alert alert-danger my-2">
+                            <p *ngIf="newAssignmentForm.get('car_brand')?.errors?.required">{{'SYSTEM.REQUIRED' |
+                                translate}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="model">{{'PAGE.ASSIGNMENT.CAR_MODEL' | translate}} :</label>
-                        <input formControlName='car_model' type="text" class="form-control" id="model">
-                        <div *ngIf="newAssignmentForm.get('car_model')?.errors != null && newAssignmentForm.get('car_model')?.touched" class="alert alert-danger my-2">
-                            <p *ngIf="newAssignmentForm.get('car_model')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
+                  </div>
+                  <div class="col-md-8">
+                    <ng-select [searchable]="true" 
+                    formControlName="car_model_id" id="brand" [closeOnSelect]="true"
+                        [clearable]="false" (change)="patchingCarModelId($event)">
+                        <ng-option *ngFor="let allCarModel of allCarModels" [value]="allCarModel.id">{{allCarModel.name}}
+                        </ng-option>
+                    </ng-select>
+                                   </div>
+                   </div>
+                        <div *ngIf="newAssignmentForm.get('car_model_id')?.errors != null && newAssignmentForm.get('car_model_id')?.touched" class="alert alert-danger my-2">
+                            <p *ngIf="newAssignmentForm.get('car_model_id')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="issued_year">{{'PAGE.ASSIGNMENT.CAR_ISSUED_YEAR' | translate}} :</label>
+                            </div>
+                            <div class="col-md-7">
+                                <ng-select [searchable]="true" 
+                                formControlName="car_model_issued_year" id="issued_year" [closeOnSelect]="true"
+                                    [clearable]="false" (change)="patchingCarIssuedYear($event)">
+                                    <ng-option *ngFor="let allCarIssuedYear of allCarIssuedYears" [value]="allCarIssuedYear">{{allCarIssuedYear}}
+                                    </ng-option>
+                                </ng-select>
+
+                            </div>
+                        </div>
+                        <div *ngIf="newAssignmentForm.get('car_model')?.errors != null && newAssignmentForm.get('car_model')?.touched"
+                            class="alert alert-danger my-2">
+                            <p *ngIf="newAssignmentForm.get('car_model')?.errors?.required">{{'SYSTEM.REQUIRED' |
+                                translate}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="form_header">
+                <h3>{{'PAGE.ASSIGNMENT.EXAMINATION_DATA' | translate}} :-</h3>
+            </div>
+            <div class="sec">
 
-            <div class="row d-flex flex-column  px-3 justify-content-between">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.EXAMINATION_DATA' | translate}} :-</h3>
-                    </div>
-                </div>
+         
                 <div class="row">
                     <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="examination">{{'PAGE.ASSIGNMENT.EXAMINATION_TYPE' | translate}} :</label>
+                   </div>
+                   <div class="col-md-8">
                         <ng-select formControlName="examination_type_id" id="examination" [closeOnSelect]="true" [clearable]="false" (change)="patchingExaminationId($event)">
-                            <ng-option *ngFor="let type of allExaminationType" [value]="type.id">{{type.type}}
+                            <ng-option *ngFor="let type of allExaminationType" [value]="type.id">{{type.examination_type}}
                             </ng-option>
                         </ng-select>
+                        </div>
+                        </div>
                         <div *ngIf="newAssignmentForm.get('examination_type_id')?.errors != null && newAssignmentForm.get('examination_type_id')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('examination_type_id')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row d-flex flex-column  px-3 justify-content-between">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_DATA' | translate}} :-</h3>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="examinationLocationType">{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_TYPE' | translate}}
                             :</label>
+                            </div>
+                            <div class="col-md-8">
                         <ng-select formControlName="examination_location_type_id" id="examinationLocationType" [closeOnSelect]="true" [clearable]="false" (change)="patchingExaminationLocationId($event)">
                             <ng-option *ngFor="let location of allExaminationLocationType" [value]="location.id">
                                 {{location.type}}
                             </ng-option>
                         </ng-select>
+                        </div>
+                        </div>
                         <div *ngIf="newAssignmentForm.get('examination_location_type_id')?.errors != null && newAssignmentForm.get('examination_location_type_id')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('examination_location_type_id')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
+                        <div class="row">
+                            <div class="col-md-3">
                         <label for="examinationLocation">{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION' | translate}}
                             :</label>
+                            </div>
+                            <div class="col-md-9">
                         <input formControlName='examination_location_address' type="text" class="form-control" id="examinationLocation">
+                    </div>
+                    </div>
                         <div *ngIf="newAssignmentForm.get('examination_location_address')?.errors != null && newAssignmentForm.get('examination_location_address')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('examination_location_address')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
@@ -167,26 +301,38 @@
                 </div>
             </div>
 
-            <div class="row d-flex flex-column  px-3 justify-content-between">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.CONTACT_PERSON_DATA' | translate}} :-</h3>
-                    </div>
-                </div>
+
+            <div class="form_header">
+                <h3>{{'PAGE.ASSIGNMENT.CONTACT_PERSON_DATA' | translate}} :-</h3>
+            </div>
+            <div class="sec">
+
                 <div class="row">
                     <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="contact_name">{{'PAGE.ASSIGNMENT.CONTACT_PERSON_NAME' | translate}} :</label>
-                        <input formControlName='contact_person_name' type="text" class="form-control" id="contact_name">
-                        <div *ngIf="newAssignmentForm.get('contact_person_name')?.errors != null && newAssignmentForm.get('contact_person_name')?.touched" class="alert alert-danger my-2">
+                     </div>
+                     <div class="col-md-8">
+                     <input formControlName='contact_person_name' type="text" class="form-control" id="contact_name">
+                     </div>
+                     </div> 
+                     <div *ngIf="newAssignmentForm.get('contact_person_name')?.errors != null && newAssignmentForm.get('contact_person_name')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('contact_person_name')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                         <label for="contact_phone">{{'PAGE.ASSIGNMENT.CONTACT_PERSON_PHONE' | translate}} :</label>
-                        <input formControlName='contact_person_phone' type="tel" class="form-control" id="contact_phone">
-                        <div *ngIf="newAssignmentForm.get('contact_person_phone')?.errors != null && newAssignmentForm.get('contact_person_phone')?.touched" class="alert alert-danger my-2">
+                    </div>
+                    <div class="col-md-8">
+                    <input formControlName='contact_person_phone' type="tel" class="form-control" id="contact_phone">
+                    </div>
+                    </div> 
+                    <div *ngIf="newAssignmentForm.get('contact_person_phone')?.errors != null && newAssignmentForm.get('contact_person_phone')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('contact_person_phone')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
                             </p>
@@ -197,32 +343,40 @@
                 </div>
             </div>
 
-            <div class="row d-flex flex-column  px-3 justify-content-between">
+            <div class="form_header">
+                <h3>{{'PAGE.ASSIGNMENT.EXAMINATION_PERSON_DATA' | translate}} :-</h3>
+            </div>
+            <div class="sec">
+
                 <div class="row">
-                    <div class="col-md-12">
-                        <h3>{{'PAGE.ASSIGNMENT.EXAMINATION_PERSON_DATA' | translate}} :-</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label for="company">{{'PAGE.ASSIGNMENT.EXAMINATION_PERSON' | translate}} :</label>
-                        <ng-select formControlName="assigned_to" id="company" [closeOnSelect]="true" [clearable]="false" (change)="patchingAssignedUser($event)">
-                            <ng-option *ngFor="let user of allUser" [value]="user.id">{{user.name}}
-                            </ng-option>
-                        </ng-select>
+                    <div class="col-md-6 form-group" *ngIf="userType==='Super Admin'">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="company">{{'PAGE.ASSIGNMENT.EXAMINATION_PERSON' | translate}} :</label>
+                            </div>
+                            <div class="col-md-7">
+                                <ng-select formControlName="assigned_to" id="company" [closeOnSelect]="true" [clearable]="false" (change)="patchingAssignedUser($event)">
+                                    <ng-option *ngFor="let user of allUser" [value]="user.id">{{user.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                 
                         <div *ngIf="newAssignmentForm.get('assigned_to')?.errors != null && newAssignmentForm.get('assigned_to')?.touched" class="alert alert-danger my-2">
                             <p *ngIf="newAssignmentForm.get('assigned_to')?.errors?.required">
                                 {{'SYSTEM.REQUIRED' | translate}}
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 form-group d-flex flex-column">
+                    <div class="col-md-6 form-group">
                         <div class="row">
+                            <div class="col-md-5">
                             <label for="date">{{'PAGE.ASSIGNMENT.EXAMINATION_DATE' | translate}} :</label>
                         </div>
-                        <div class="row d-flex flex-row">
+                        <div class="col-md-7">
+                        <div class=" d-flex">
                             <div>
-                                <input formControlName="examination_date" matInput [matDatepicker]="picker" (focus)="picker.open()" class="form-control">
+                                <input [ngModel]="oneAssignment.examination_date| date:'yyyy-MM-dd'" formControlName="examination_date" matInput [matDatepicker]="picker" (focus)="picker.open()" class="form-control">
                                 <mat-error *ngIf="newAssignmentForm.get('examination_date').hasError('required')">
                                     {{'SYSTEM.REQUIRED' | translate}}
                                 </mat-error>
@@ -231,38 +385,49 @@
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    <div class="col-md-3 form-group d-flex flex-column">
+                    <div class="col-md-6 form-group">
                         <div class="row">
+                            <div class="col-md-5">
                             <label for="from_date">{{'PAGE.ASSIGNMENT.EXAMINATION_START' | translate}} :</label>
                         </div>
-                        <div class="row d-flex flex-row">
-                            <div>
-                                <input matTimepicker #t="matTimepicker" [strict]="false" id="from_date" mode="12h" formControlName="examination_from_time" class="form-control">
-                                <mat-error *ngIf="newAssignmentForm.get('examination_from_time').hasError('required')">
+                        <div class="col-md-7">
+                            <div class="d-flex">
+                                <input 
+                                 matTimepicker #t="matTimepicker" [strict]="false" id="from_date" mode="12h" formControlName="examination_from_time" class="form-control">
+                                 <!-- <input type="time" id="appt" name="examination_from_time"
+                                  formControlName="examination_from_time"> -->
+                                 <mat-error *ngIf="newAssignmentForm.get('examination_from_time').hasError('required')">
                                     {{'SYSTEM.REQUIRED' | translate}}
                                 </mat-error>
-                            </div>
                             <div>
                                 <mat-icon matSuffix (click)="t.showDialog()">access_time</mat-icon>
                             </div>
                         </div>
+                        </div>
+                        </div>
                     </div>
-                    <div class="col-md-3 form-group d-flex flex-column">
+                    <div class="col-md-6 form-group d-flex flex-column">
                         <div class="row">
+                            <div class="col-md-5">
                             <label for="to_date">{{'PAGE.ASSIGNMENT.EXAMINATION_END' | translate}} :</label>
                         </div>
-                        <div class="row d-flex flex-row">
-                            <div>
-                                <input matTimepicker #t1="matTimepicker" [strict]="false" id="to_date" mode="12h" formControlName="examination_to_time" class="form-control">
+                        <div class="col-md-7">
+                            <div class="d-flex">
+                                <input  matTimepicker #t1="matTimepicker" [strict]="false" id="to_date" mode="24h"
+                                 formControlName="examination_to_time" class="form-control">
                                 <mat-error *ngIf="newAssignmentForm.get('examination_to_time').hasError('required')">
                                     {{'SYSTEM.REQUIRED' | translate}}
                                 </mat-error>
-                            </div>
                             <div>
                                 <mat-icon matSuffix (click)="t1.showDialog()">access_time</mat-icon>
                             </div>
+                        </div>
+
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -276,15 +441,15 @@
 
             <div class="col-md-12 d-flex justify-content-end">
                 <div class="py-1 mx-2">
-                    <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" type="submit" [disabled]="newAssignmentForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
+                    <button class="btn btn-block submit" type="submit" [disabled]="newAssignmentForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
                 </div>
                 <div class="py-1 mx-2">
-                    <button class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" [routerLink]="'/assignment/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
+                    <button class="btn btn-block cancel" [routerLink]="'/assignment/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
                 </div>
             </div>
 
 
 
         </form>
-    </div>
+        </div>
 </div>

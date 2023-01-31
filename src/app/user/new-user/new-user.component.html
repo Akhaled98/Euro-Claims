@@ -1,85 +1,156 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
+   
+    <div class="content_header">
+                <h2 class="font-weight-bold content_title">{{newUser_link}}</h2>
+            </div>
         <form class="p-3 row" [formGroup]="newUserForm" (ngSubmit)="onSubmit(newUserForm)">
 
             <div class="input-field col s12 d-none">
                 <input formControlName="id" class="form-control" type="hidden">
             </div>
-            <div class="col-md-3 form-group">
-                <label for="type">{{'PAGE.USERS.ACCOUNT_TYPE' | translate}} :</label>
-                <ng-select formControlName="account_type" id="type" [closeOnSelect]="true" [clearable]="false" (change)="patchingUserType($event)">
-                    <ng-option value="Agent"> {{'PAGE.USERS.EMPLOYEE_USER' | translate}}
-                    </ng-option>
-                    <ng-option value="Insurance User"> {{'PAGE.USERS.EMPLOYEE_INSURANCE' | translate}}
-                    </ng-option>
-                </ng-select>
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
-                <input formControlName='name' type="text" class="form-control" id="name">
-                <div *ngIf="newUserForm.get('name')?.errors != null && newUserForm.get('name')?.touched" class="alert alert-danger my-2">
-                    <p *ngIf="newUserForm.get('name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
-                </div>
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="phone">{{'PAGE.PROFILE_DATA.PHONE' | translate}} :</label>
-                <input formControlName='phone' type="tel" class="form-control" id="phone">
-                <div *ngIf="newUserForm.get('phone')?.errors != null && newUserForm.get('phone')?.touched" class="alert alert-danger my-2">
-                    <p *ngIf="newUserForm.get('phone')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
-                </div>
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="address">{{'PAGE.PROFILE_DATA.ADDRESS' | translate}} :</label>
-                <input formControlName='address' type="text" class="form-control" id="address">
-                <div *ngIf="newUserForm.get('address')?.errors != null && newUserForm.get('address')?.touched" class="alert alert-danger my-2">
-                    <p *ngIf="newUserForm.get('address')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
-                </div>
-            </div>
-            <div *ngIf="insuranceCompanyFlag"  class="col-md-12 row form-group">
-                <div  class="col-md-6">
-                    <label for="company">{{'PAGE.CLIENT.RESPONSIBLE_COMPANY' | translate}} :</label>
-                    <ng-select formControlName="insurance_company_id" id="company" [closeOnSelect]="true" [clearable]="false" (change)="patchingInsuranceId($event)">
-                        <ng-option *ngFor="let company of allCompany" [value]="company.id">{{company.name}}
-                        </ng-option>
-                    </ng-select>
-                </div>
-            </div>
-            <div class="col-md-12 row form-group">
-                <div class="col-md-4 form-group">
-                    <label for="email">{{'PAGE.PROFILE_DATA.EMAIL' | translate}} :</label>
-                    <input formControlName='email' type="text" class="form-control" id="email">
-                    <div *ngIf="newUserForm.get('email')?.errors != null && newUserForm.get('email')?.touched" class="alert alert-danger my-2">
-                        <p *ngIf="newUserForm.get('email')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
-                        <p *ngIf="newUserForm.get('email')?.errors?.email">{{'SYSTEM.EMAI_REQIRED' |translate}}</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="type">{{'PAGE.USERS.ACCOUNT_TYPE' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <ng-select formControlName="account_type" id="type" [closeOnSelect]="true" [clearable]="false" (change)="patchingUserType($event)">
+                                    <ng-option value="Agent"> {{'PAGE.USERS.EMPLOYEE_USER' | translate}}
+                                    </ng-option>
+                                    <ng-option value="Insurance User"> {{'PAGE.USERS.EMPLOYEE_INSURANCE' | translate}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="password">{{'PAGE.SIGN_IN.PASSWORD' | translate}} :</label>
-                    <input formControlName='password' type="password" class="form-control" id="password">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input formControlName='name' type="text" class="form-control" id="name">
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="newUserForm.get('name')?.errors != null && newUserForm.get('name')?.touched" class="alert alert-danger my-2">
+                        <p *ngIf="newUserForm.get('name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="phone">{{'PAGE.PROFILE_DATA.PHONE' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input formControlName='phone' type="tel" class="form-control" id="phone">
+
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div *ngIf="newUserForm.get('phone')?.errors != null && newUserForm.get('phone')?.touched" class="alert alert-danger my-2">
+                        <p *ngIf="newUserForm.get('phone')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="company">{{'PAGE.CLIENT.RESPONSIBLE_COMPANY' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <ng-select formControlName="insurance_company_id" id="company" [closeOnSelect]="true" [clearable]="false" (change)="patchingInsuranceId($event)">
+                                    <ng-option *ngFor="let company of allCompany" [value]="company.id">{{company.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="email">{{'PAGE.PROFILE_DATA.EMAIL' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input formControlName='email' type="text" class="form-control" id="email">
+
+                            </div>
+                        </div>
+                        <div *ngIf="newUserForm.get('email')?.errors != null && newUserForm.get('email')?.touched" class="alert alert-danger my-2">
+                            <p *ngIf="newUserForm.get('email')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
+                            <p *ngIf="newUserForm.get('email')?.errors?.email">{{'SYSTEM.EMAI_REQIRED' |translate}}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="password">{{'PAGE.SIGN_IN.PASSWORD' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input formControlName='password' type="password" class="form-control" id="password">
+
+                            </div>
+                        </div>
+                    </div>
                     <div *ngIf="newUserForm.get('password')?.errors != null && newUserForm.get('password')?.touched" class="alert alert-danger my-2">
                         <p *ngIf="newUserForm.get('password')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="password_confirmation">{{'PAGE.PROFILE_DATA.CONFIRM_NEW_PASSWORD' | translate}} :</label>
-                    <input formControlName='password_confirmation' type="password" class="form-control" id="password_confirmation">
-                    <div *ngIf="newUserForm.get('password_confirmation')?.errors != null && newUserForm.get('password_confirmation')?.touched" class="alert alert-danger my-2">
-                        <p *ngIf="newUserForm.get('password_confirmation')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
-                        </p>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="password_confirmation">{{'PAGE.PROFILE_DATA.CONFIRM_NEW_PASSWORD' | translate}} :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input formControlName='password_confirmation' type="password" class="form-control" id="password_confirmation">
+
+                            </div>
+                        </div>
+                        <div *ngIf="newUserForm.get('password_confirmation')?.errors != null && newUserForm.get('password_confirmation')?.touched" class="alert alert-danger my-2">
+                            <p *ngIf="newUserForm.get('password_confirmation')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}
+                            </p>
+                        </div>
                     </div>
-                    <div *ngIf="passwordFlag" class="alert alert-danger my-2">
-                        <p>{{'VALIDATION.PASSWORD_NOT_MATCH' | translate}}</p>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="address">{{'PAGE.PROFILE_DATA.ADDRESS' | translate}} :</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input formControlName='address' type="text" class="form-control" id="address">
+
+                            </div>
+                            <div *ngIf="newUserForm.get('address')?.errors != null && newUserForm.get('address')?.touched" class="alert alert-danger my-2">
+                                <p *ngIf="newUserForm.get('address')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+           
+         
             <div class="col-md-12 d-flex justify-content-end">
                 <div class=" mx-2">
-                    <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" type="submit" [disabled]="newUserForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
+                    <button class="btn btn-block submit" type="submit" [disabled]="newUserForm.invalid">{{'PAGE.USERS.SAVE' |translate}}</button>
                 </div>
                 <div class=" mx-2">
-                    <button class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" [routerLink]="'/user/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
+                    <button class="btn btn-block cancel" [routerLink]="'/user/list'" type="button">{{'PAGE.USERS.CANCEL' |translate}}</button>
                 </div>
             </div>
         </form>
-    </div>
 </div>

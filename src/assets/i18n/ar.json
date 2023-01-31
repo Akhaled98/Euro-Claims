@@ -1,5 +1,7 @@
 {
+    "profile":"تعديل الملف الشخصي",
 
+    "change_password":"تغير كلمة المرور",
     "Messages": "رسائل",
     "Mark send you a message": "مارك يرسل لك رسالة",
     "1 Minutes ago": "منذ 1 دقيقة",
@@ -195,7 +197,8 @@
         "AGENDA": "الاجندة",
         "CHATS": "الرسائل",
         "USER": "المستخدمين",
-        "CLIENTS": "العملاء"
+        "CLIENTS": "العملاء",
+        "SIGNOUT":"تسجيل خروج"
     },
     "PAGE": {
         "SIGN_IN": {
@@ -238,7 +241,12 @@
             "RESPONSIBLE_COMPANY": "الشركة المسئولة"
         },
         "ASSIGNMENT": {
-            "TITLE": "التكليفات",
+       "edit_title":"تعديل تكليف",
+            "add_title":"اضافة تكليف",
+            "status":"الحالة",
+            "actions":"الاجراءات",
+                 "TITLE": "التكليفات",
+            "ID":"رقم التكليف",
             "NEW_ASSIGNMENT": "إضافة تكليف",
             "CLIENT_DATA": "بيانات العميل",
             "CLIENT_NAME": "إسم العميل",
@@ -250,9 +258,11 @@
             "CAR_PLATE": "رقم لوحة السيارة",
             "CAR_ENGINE": "رقم ماتور السيارة",
             "CAR_COLOR": "لون السيارة",
-            "CAR_MODEL": "ماركة السيارة",
+            "CAR_MODEL": "طراز السيارة",
             "EXAMINATION_DATA": "بيانات  المعاينة",
             "EXAMINATION_TYPE": "نوع المعاينة",
+    "CAR_BRAND":"ماركة السيارة",
+    "CAR_ISSUED_YEAR":"سنة صنع السيارة",
             "EXAMINATION_LOCATION_DATA": "بيانات  مكان المعاينة",
             "EXAMINATION_LOCATION_TYPE": "نوع مكان المعاينة",
             "EXAMINATION_LOCATION": "مكان المعاينة بالتفصيل",
@@ -265,9 +275,34 @@
             "EXAMINATION_START": "بداية المعاينة",
             "EXAMINATION_END": "نهاية المعاينة"
         },
+        "AGENDA":{
+            "TITLE":"الاجندة",
+            "date":"تاريخ المعاينة",
+            "created_by":"تم الانشاء عن طريق",
+            "assigned_to":"مخصص الى",
+            "insurance_company":"شركة التأمين",
+            "customer_name":"اسم العميل",
+            "customer_phone":"رقم هاتف العميل",
+            "customer_address":"عنوان العميل",
+            "car_document_number":"رقم زثيقة السيارة",
+"car_vin_decoder":"رقم شاسية السيارة",
+"car_plate_number":"رقم لوحة السيارة",
+"car_engine_number":"رقم ماتور السيارة",
+"car_color":"رقم السيارة",
+"car_model":"موديل السيارة",
+"examination_date":"تاريخ المعاينة",
+"examination_from_time":"المعاينة من وقت",
+"examination_location_address":"عنوان المعاينة",
+"examination_location_type":"نوع عنوان المعاينة",
+"examination_to_time":"المعاينة حنى وقت",
+"examination_type":"نوع المعاينة",
+"contact_person_name":"اسم مسؤول التواصل",
+"contact_person_phone":"رقم مسؤول التواصل",
+"assignment_desc":"اضافة وصف المعاينة"
+                    },
         "PREVIEWS": {
             "TITLE": "المعاينات",
-            "DETAILS": "تفاصيل المعاينة",
+            "DETAILS": "معاينة العميل",
             "INSURANCE_COMPANY_DATA": "بيانات  مكان المعاينة",
             "ATTATCHES": "ملفات المعاينة",
             "DISCRIPTION": "وصف المعاينة",

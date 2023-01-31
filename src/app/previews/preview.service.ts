@@ -22,6 +22,18 @@ export class PreviewService {
     );
   }
 
+  getAllPreviewAgent() {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.get(
+      `${environment.apiUrl}/api/agents/examinations`,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
   getPreviewById(id): Observable<any> {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.get(`${environment.apiUrl}/api/dashboard/admins/examinations/${id}`, {
@@ -30,6 +42,16 @@ export class PreviewService {
       }),
     });
   }
+
+  getPreviewByIdAgent(id): Observable<any> {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.get(`${environment.apiUrl}/api/agents/examinations/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token,
+      }),
+    });
+  }
+
   getAllPhoto(): Observable<any> {
     return this._HttpClient.get('https://jsonplaceholder.typicode.com/photos')
   }
@@ -37,6 +59,18 @@ export class PreviewService {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.post(
       `${environment.apiUrl}/api/dashboard/admins/examination/${previewId}/attachments/${attatchmentId}`, previewData,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
+  updatePreviewAgent(previewId, attatchmentId, previewData) {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.post(
+      `${environment.apiUrl}/api/agents/examination/${previewId}/attachments/${attatchmentId}`, previewData,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,
@@ -56,10 +90,34 @@ export class PreviewService {
     );
   }
 
+  dislikePreviewAgent(previewId, attatchmentId, previewData) {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.put(
+      `${environment.apiUrl}/api/agents/examination/${previewId}/attachments/${attatchmentId}`, previewData,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
   addPreviewDiscription(examinationId,discriptionData) {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.put(
-      `${environment.apiUrl}/api/agent/examinations/${examinationId}`, discriptionData,
+      `${environment.apiUrl}/api/dashboard/admins/examinations/${examinationId}`, discriptionData,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
+  addPreviewDiscriptionAgent(examinationId,discriptionData) {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.put(
+      `${environment.apiUrl}/api/agents/examinations/${examinationId}`, discriptionData,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,

@@ -21,6 +21,18 @@ export class ProfileService {
       }
     );
   }
+
+  getUserProfileData() {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.get(
+      `${environment.apiUrl}/api/users/profile`,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
   editProfileData(profileData) {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.put(

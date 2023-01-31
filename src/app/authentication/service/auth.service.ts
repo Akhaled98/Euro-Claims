@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
 import jwtDecode from "jwt-decode";
 import { environment } from "src/environments/environment";
 import { TranslateService } from "@ngx-translate/core";
 import { SharedService } from "src/app/shared/shared.service";
+import { catchError, map, take } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -49,8 +50,31 @@ export class AuthService {
   }
 
   login(formData: any): Observable<any> {
-    return this._HttpClient.post(
+    console.log(formData)
+
+    console.log(environment.apiUrl)
+    return this._HttpClient.post<any>(
       `${environment.apiUrl}/api/dashboard/admins/auth/login`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+        }),
+      }
+
+    );
+
+    // return this._HttpClient
+    // .post(`${environment.apiUrl}/api/dashboard/admins/auth/login`,formData)
+    // .pipe(
+    //   catchError(this.handleError)
+    // );
+  }
+
+  userLogin(formData: any): Observable<any> {
+    console.log(formData)
+    return this._HttpClient.post(
+      `${environment.apiUrl}/api/users/auth/login`,
       formData
     );
   }
@@ -60,6 +84,18 @@ export class AuthService {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.get(
       `${environment.apiUrl}/api/dashboard/admins/auth/logout`,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
+  logoutUser() {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.get(
+      `${environment.apiUrl}/api/users/auth/logout`,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + token,
@@ -96,4 +132,16 @@ export class AuthService {
     );
   }
 
+  handleError(error: any) {
+    let errorMessage = "";
+    if (error.error instanceof ErrorEvent) {
+        // client-side error
+        errorMessage = `Error: ${error.error.message}`;
+    } else {
+        // server-side error
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(() => new Error(errorMessage))
+  }
 }

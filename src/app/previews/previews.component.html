@@ -1,12 +1,53 @@
-<div class="container-fluid">
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
     <div class="row">
-        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center content_header">
             <div class="col-md-3">
-                <h1 class="font-weight-bold">{{'PAGE.PREVIEWS.TITLE' |translate}}</h1>
+                <h1 class="font-weight-bold content_title">{{'PAGE.PREVIEWS.TITLE' |translate}}</h1>
             </div>
         </div>
-        <div class="col-sm-12 my-4" *ngIf="previewData != null">
-            <ngx-datatable #table class="material" [rows]="previewData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
+        <div class="col-sm-12 my-4" *ngIf="previewDatas != null">
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}</th>
+                    <th scope="col">{{'SYSTEM.TITLE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.CONTACT_PERSON_NAME'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.EXAMINATION_TYPE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_TYPE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.status'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.actions'  | translate}}</th>
+                </tr>
+                                </thead>
+                <tbody>
+
+                    <tr *ngFor="let previewData of previewDatas">
+                        <td>{{previewData.assignment.customer_name}}</td>
+                        <td>{{previewData.assignment.insurance_company}}</td>
+                        <td>{{previewData.assignment.contact_person_name}}</td>
+                      <td>{{previewData.assignment.examination_type}}</td>
+                        <td>{{previewData.assignment.examination_location_type}}</td>
+                        <td>
+                            <span class="circle-danger" *ngIf="previewData.assignment.status=='pending'"></span>
+                            <span class="circle-green" *ngIf="previewData.assignment.status=='completed'"></span>
+                            <span class="circle-yellow" *ngIf="previewData.assignment.status=='on going'"></span>
+                            {{previewData.assignment.status}}
+                        </td>
+                        <td class="actions">
+
+                            <a routerLink="/previews/assignPreview/{{previewData.id}}" style="margin-left: 10px;"><i class="fas fa-eye"></i></a>
+                            <!-- <a style="cursor: pointer;" (click)="deleteAssignment(assignmentData)"><i class="fas fa-trash"></i></a> -->
+
+                        </td>
+
+                      </tr>
+                      
+                    
+                    </tbody>
+              </table>
+</div>
+
+            <!-- <ngx-datatable #table class="material" [rows]="previewData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
                 <ngx-datatable-column [sortable]="true" prop='assignment.customer_name' name="{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}">
                 </ngx-datatable-column>
                 <ngx-datatable-column [sortable]="true" prop='assignment.customer_phone' name="{{'PAGE.ASSIGNMENT.CLIENT_PHONE'  | translate}}">
@@ -33,7 +74,7 @@
                         </mat-menu>
                     </ng-template>
                 </ngx-datatable-column>
-            </ngx-datatable>
+            </ngx-datatable> -->
         </div>
     </div>
 </div>

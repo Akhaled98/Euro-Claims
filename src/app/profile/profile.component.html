@@ -1,3 +1,8 @@
+<div class="container-fluid content_container"  style="padding: 20px 30px !important;position: relative;">
+<div class="content">
+    <div class="content_header">
+        <h2 class="font-weight-bold content_title">{{'profile' |translate}}</h2>
+    </div>
 <div class="d-flex align-items-stretch auth auth-img-bg h-100">
     <div class="row flex-grow">
         <div *ngIf="profileData!= null" class="col-lg-12">
@@ -7,29 +12,53 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
-                    <input formControlName='name' type="text" class="form-control" id="name" [(ngModel)]="profileData.name">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="name">{{'PAGE.PROFILE_DATA.NAME' | translate}} :</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input formControlName='name' type="text" class="form-control" id="name" [(ngModel)]="profileData.name">
+                        </div>
+                    </div>
                     <div *ngIf="profileForm.get('name')?.errors != null && profileForm.get('name')?.touched" class="alert alert-danger my-2">
                         <p *ngIf="profileForm.get('name')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
                     <label for="phone">{{'PAGE.PROFILE_DATA.PHONE' | translate}} :</label>
+                    </div>
+                    <div class="col-md-9">
                     <input formControlName='phone' type="tel" class="form-control" id="phone" [(ngModel)]="profileData.phone">
+                 </div>
+                 </div>
                     <div *ngIf="profileForm.get('phone')?.errors != null && profileForm.get('phone')?.touched" class="alert alert-danger my-2">
                         <p *ngIf="profileForm.get('phone')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
                     <label for="address">{{'PAGE.PROFILE_DATA.ADDRESS' | translate}} :</label>
-                    <input formControlName='address' type="text" class="form-control" id="address" [(ngModel)]="profileData.address">
+                  </div>
+                  <div class="col-md-9">
+                    <textarea formControlName='address' type="text" class="form-control" id="address" [(ngModel)]="profileData.address" rows="5"></textarea>
+                 </div>
+                 </div>
                     <div *ngIf="profileForm.get('address')?.errors != null && profileForm.get('address')?.touched" class="alert alert-danger my-2">
                         <p *ngIf="profileForm.get('address')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
                     <label for="email">{{'PAGE.PROFILE_DATA.EMAIL' | translate}} :</label>
+                  </div>
+                    <div class="col-md-9">
                     <input formControlName='email' type="text" class="form-control" id="email" [(ngModel)]="profileData.email">
+                </div>
+                </div>
                     <div *ngIf="profileForm.get('email')?.errors != null && profileForm.get('email')?.touched" class="alert alert-danger my-2">
                         <p *ngIf="profileForm.get('email')?.errors?.required">{{'SYSTEM.REQUIRED' | translate}}</p>
                         <p *ngIf="profileForm.get('email')?.errors?.email">{{'VALIDATION.EMAIL_INVALID' | translate}}</p>
@@ -45,4 +74,6 @@
 
         </div>
     </div>
+</div>
+</div>
 </div>

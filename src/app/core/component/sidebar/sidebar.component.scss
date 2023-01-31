@@ -611,3 +611,9 @@
     }
   }
 }
+
+@media (max-width:786px) {
+  .sidebar_title{
+      display: none !important;
+  } 
+}

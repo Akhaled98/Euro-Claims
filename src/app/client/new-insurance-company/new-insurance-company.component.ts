@@ -19,6 +19,7 @@ export class NewInsuranceCompanyComponent implements OnInit {
   passwordFlag: boolean = false;
   oneInsuranceCompany: any;
   activeLabel: string;
+  newUser_link:any;
   constructor(
     private formBuilder: FormBuilder,
     public translate: TranslateService,
@@ -32,10 +33,13 @@ export class NewInsuranceCompanyComponent implements OnInit {
   ngOnInit(): void {
     const id = +this.activatedRoute.snapshot.params.id || null;
     if (id) {
+      this.newUser_link='تعديل العميل'
       this._ClientService.getInsuranceById(id).subscribe((res) => {
         this.oneInsuranceCompany = res.data;
         this.newInsuranceCompanyForm.patchValue(res.data);
       });
+    }else{
+      this.newUser_link="اضافة عميل"
     }
     this.initForm();
   }

@@ -1,0 +1,223 @@
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
+        <div class="content_header">
+                <h1 class="font-weight-bold font_cairo">{{'PAGE.PREVIEWS.DETAILS' |translate}} {{agenda.assignment.customer_name}}</h1>
+           
+        </div>
+   
+        <div class="content font_cairo" style="padding-top: 20px;">
+      
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="title">{{ 'PAGE.AGENDA.date' | translate}}:</h3>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="desc">{{agenda.created_at}} ({{agenda.created_since}})</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="title">{{ 'PAGE.AGENDA.created_by' | translate}}:</h3>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="desc">{{agenda.assignment.created_by}}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="title">{{ 'PAGE.AGENDA.assigned_to' | translate}}:</h3>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="desc">{{agenda.assignment.assigned_to}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="title">{{ 'PAGE.AGENDA.insurance_company' | translate}}:</h3>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="desc">{{agenda.assignment.insurance_company}}</h4>
+                </div>
+            </div>
+<!-- <div class="" *ngIf="agenda.description!==null">
+    <h3>الوصف: <span>{{agenda.description}}</span></h3>
+    
+</div> -->
+
+<ngb-tabset>
+    <ngb-tab title="بيانات العميل">
+      <ng-template ngbTabContent>
+        <div class="row">
+           
+                    <div class="col-md-3">
+                        <h3 class="title">{{ 'PAGE.AGENDA.customer_name' | translate}}:</h3>
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="desc">{{agenda.assignment.customer_name}}</h4>
+                    </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3 class="title">{{ 'PAGE.AGENDA.customer_phone' | translate}}:</h3>
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="desc">{{agenda.assignment.customer_phone}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3 class="title">{{ 'PAGE.AGENDA.customer_address' | translate}}:</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="desc">{{agenda.assignment.customer_address}}</h4>
+                    </div>
+                </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="بيانات السيارة">
+      <ng-template ngbTabContent>
+        <div class="row">
+           
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_document_number' | translate}}:</h3>
+            </div>
+            <div class="col-md-9">
+                <h4 class="desc">{{agenda.assignment.car_document_number}}</h4>
+            </div>
+    </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_vin_decoder' | translate}}:</h3>
+            </div>
+            <div class="col-md-9">
+                <h4 class="desc">{{agenda.assignment.car_vin_decoder}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_plate_number' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.car_plate_number}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_engine_number' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.car_engine_number}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_color' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.car_color}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.car_model' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.car_model}}</h4>
+            </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="بيانات المعاينة">
+      <ng-template ngbTabContent>
+        <div class="row">
+           
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_date' | translate}}:</h3>
+            </div>
+            <div class="col-md-9">
+                <h4 class="desc">{{agenda.assignment.examination_date}}</h4>
+            </div>
+    </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_from_time' | translate}}:</h3>
+            </div>
+            <div class="col-md-9">
+                <h4 class="desc">{{agenda.assignment.examination_from_time}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_to_time' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.examination_to_time}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_location_address' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.examination_location_address}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_location_type' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.examination_location_type}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="title">{{ 'PAGE.AGENDA.examination_type' | translate}}:</h3>
+            </div>
+            <div class="col-md-8">
+                <h4 class="desc">{{agenda.assignment.examination_type}}</h4>
+            </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="بيانات التواصل">
+        <ng-template ngbTabContent>
+          <div class="row">
+             
+              <div class="col-md-3">
+                  <h3 class="title">{{ 'PAGE.AGENDA.contact_person_name' | translate}}:</h3>
+              </div>
+              <div class="col-md-9">
+                  <h4 class="desc">{{agenda.assignment.contact_person_name}}</h4>
+              </div>
+      </div>
+          <div class="row">
+              <div class="col-md-3">
+                  <h3 class="title">{{ 'PAGE.AGENDA.contact_person_phone' | translate}}:</h3>
+              </div>
+              <div class="col-md-9">
+                  <h4 class="desc">{{agenda.assignment.contact_person_phone}}</h4>
+              </div>
+          </div>
+        
+        </ng-template>
+      </ngb-tab>
+  </ngb-tabset>
+  
+
+  <div class="content_details pt-3">
+    <div class="content_header_details">
+        <h3>{{'PAGE.AGENDA.assignment_desc' | translate}} :-</h3>
+    </div>
+  <div class="sec">
+  <form [formGroup]="updateAgendaForm" (ngSubmit)="onSubmit(updateAgendaForm)">
+    <textarea class="form-control" formControlName="description" name="" id="" rows="10" ></textarea>
+    <button style="margin-top:20px;margin-bottom:20px" class="btn submit" type="submit">
+        {{'PAGE.USERS.SAVE' |translate}}</button>
+      </form>
+  </div>
+
+
+    </div>
+</div>
+</div>

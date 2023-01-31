@@ -19,6 +19,7 @@ export class NewUserComponent implements OnInit {
   oneUser: any;
   insuranceCompanyFlag: boolean = false;
   allCompany: any;
+  newUser_link:any;
   constructor(
     private formBuilder: FormBuilder,
     public translate: TranslateService,
@@ -33,6 +34,7 @@ export class NewUserComponent implements OnInit {
   ngOnInit(): void {
     const id = +this.activatedRoute.snapshot.params.id || null;
     if (id) {
+    this.newUser_link='تعديل المستخدم'
       this._UserService.getUserById(id).subscribe((res) => {
         this.oneUser = res.data;
         this.newUserForm.patchValue(res.data);
@@ -41,6 +43,9 @@ export class NewUserComponent implements OnInit {
           this.insuranceCompanyFlag = true;
         }
       });
+    
+    }else{
+      this.newUser_link='اضافة مستخدم'
     }
     this.initForm();
     this.getActiveCompany();

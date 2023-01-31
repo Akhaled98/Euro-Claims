@@ -33,6 +33,19 @@ export class ClientService {
       }
     );
   }
+
+  getActiveCompanyByAgent() {
+    let token: any = localStorage.getItem("userToken");
+    return this._HttpClient.get(
+      `${environment.apiUrl}/api/agents/accounts/insurance-users`,
+      {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + token,
+        }),
+      }
+    );
+  }
+
   updateInsurance(UserData,id) {
     let token: any = localStorage.getItem("userToken");
     return this._HttpClient.put(

@@ -1,15 +1,22 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
+    <div class="d-flex justify-content-center" *ngIf="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only" id="loading"></span>
+        </div>
+    </div>
+    <div class="row" *ngIf="!loader">
+        <div class="col-lg-12 d-flex justify-content-between content_header">
             <div class="col-md-3">
-                <h1 class="font-weight-bold">{{'PAGE.ASSIGNMENT.TITLE' |translate}}</h1>
+                <h2 class="font-weight-bold content_title">{{'PAGE.ASSIGNMENT.TITLE' |translate}}</h2>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" [routerLink]="'/assignment/newAssignment'">{{'PAGE.ASSIGNMENT.NEW_ASSIGNMENT' |translate}}</button>
+                <button class="btn btn-info add_button" [routerLink]="'/assignment/newAssignment'">{{'PAGE.ASSIGNMENT.NEW_ASSIGNMENT' |translate}}</button>
             </div>
         </div>
-        <div class="col-sm-12 my-4" *ngIf="assignmentData!=null">
-            <ngx-datatable #table class="material" [rows]="assignmentData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
+        <div class="col-sm-12 my-4" *ngIf="assignmentDatas!=null">
+            <!-- <ngx-datatable #table class="material" [rows]="assignmentData" [columns]="columns" [messages]="messages" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'45'">
+                <ngx-datatable-column style="font-size: 8px !important;" [sortable]="true" prop='id' name="{{'PAGE.ASSIGNMENT.ID'  | translate}}">
+                </ngx-datatable-column>
                 <ngx-datatable-column [sortable]="true" prop='customer_name' name="{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}">
                 </ngx-datatable-column>
                 <ngx-datatable-column [sortable]="true" prop='customer_phone' name="{{'PAGE.ASSIGNMENT.CLIENT_PHONE'  | translate}}">
@@ -39,7 +46,65 @@
                         </mat-menu>
                     </ng-template>
                 </ngx-datatable-column>
-            </ngx-datatable>
+            </ngx-datatable> -->
+
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.CLIENT_NAME'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.CAR_DOCUMENT'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.EXAMINATION_TYPE'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.EXAMINATION_LOCATION_DATA'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.status'  | translate}}</th>
+                    <th scope="col">{{'PAGE.ASSIGNMENT.actions'  | translate}}</th>
+                </tr>
+                                </thead>
+                <tbody>
+
+                    <tr *ngFor="let assignmentData of assignmentDatas">
+                        <td>{{assignmentData.customer_name}}</td>
+                        <td>{{assignmentData.car_document_number}}</td>
+                        <td>{{assignmentData.examination_type}}</td>
+                        <td>{{assignmentData.examination_location_type}}</td>
+                        <td>
+                            <span class="circle-danger" *ngIf="assignmentData.status=='pending'"></span>
+                            <span class="circle-green" *ngIf="assignmentData.status=='completed'"></span>
+                            <span class="circle-yellow" *ngIf="assignmentData.status=='on going'"></span>
+                            {{assignmentData.status}}
+                        </td>
+                        <td class="actions">
+
+                            <a (onClick)="saveId(assignmentData.id)" routerLink="/assignment/editAssignment/{{assignmentData.id}}" style="margin-left: 10px;"><i class="fas fa-pencil"></i></a>
+                            <a style="cursor: pointer;" (click)="deleteAssignment(assignmentData)"><i class="fas fa-trash"></i></a>
+
+                        </td>
+
+                      </tr>
+                      
+                    
+                    </tbody>
+              </table>
+              </div>
+
+            <!-- <table datatable [dtOptions]="dtOptions" class="table row-border hover">
+                <thead>
+                <tr>
+                <th>UserId</th>
+                <th>Subject</th>
+                <th>Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let assignmentDa of assignmentData">
+<th>{{assignmentDa.customer_name}}</th>
+<th>{{assignmentDa.customer_name}}</th>
+<th>{{assignmentDa.customer_name}}</th>
+<th>{{assignmentDa.customer_name}}</th>
+
+                    </tr>
+                    </tbody>
+                    </table> -->
         </div>
     </div>
 </div>

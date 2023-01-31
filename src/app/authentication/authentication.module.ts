@@ -10,11 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditPasswordComponent } from './edit-password/edit-password/edit-password.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, EditPasswordComponent],
+  declarations: [LoginComponent, EditPasswordComponent, UserLoginComponent],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,

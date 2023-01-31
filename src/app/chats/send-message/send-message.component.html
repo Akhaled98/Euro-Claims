@@ -1,0 +1,9 @@
+<div class="send_message">
+<form [formGroup]="SendMessageForm" (ngSubmit)="onSubmit(SendMessageForm)">
+    <div class="d-flex">
+    <input formControlName='body' type="text" name="body" class="form-control" id="body">
+    <button class="btn btn-info font-weight-medium auth-form-btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+</div>
+</form>
+
+</div>

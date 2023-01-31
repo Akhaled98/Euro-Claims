@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
     { name: "address", prop: "address" },
 
   ];
-  dataUser:any=null;
+  dataUsers:any=null;
   messages = {emptyMessage: '', totalMessage: ''};
 
   constructor(private _UserService:UserService,
@@ -36,7 +36,8 @@ export class UserComponent implements OnInit {
   }
   getAllUser(){
     this._UserService.getAllUser().subscribe((res) => {
-      this.dataUser = res['data'];
+      this.dataUsers = res['data'];
+      console.log(this.dataUsers)
     });
   }
   ngDoCheck() {

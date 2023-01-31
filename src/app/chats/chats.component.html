@@ -1,1 +1,39 @@
-<p>chats works!</p>
+<div class="container-fluid content_container" style="padding: 20px 30px !important;">
+    <div class="content_header">
+            <h1 class="font-weight-bold font_cairo">الرسائل</h1>
+       
+    </div>
+
+    <div class="chat">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="rooms">
+                <h3 class="font_cairo">الغرف</h3>
+    <div class="room" *ngFor="let room of rooms">
+        
+        <a (click)="saveData(room)">
+            <img src="assets/images/Profile_avatar_placeholder_large.png">
+            <h4>{{room.participant_two.name}}</h4>
+        </a>
+</div>
+<h3 class="font_cairo">المستخدمين</h3>
+<div class="room" *ngFor="let user of users">
+    <a (click)="saveData(user)">
+        <div class="d-flex">
+        <img src="assets/images/Profile_avatar_placeholder_large.png">
+        <h4>{{user.name}} </h4><br>
+        </div>
+    </a>
+</div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="message_box">
+            <app-messages></app-messages>
+            <app-send-message></app-send-message>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>

@@ -1,50 +1,68 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-        <li class="nav-item nav-profile">
-            <a href="javascript:;" class="nav-link">
-                <div class="nav-profile-image">
-                    <img src="assets/images/Profile_avatar_placeholder_large.png" alt="profile">
-                    <span class="login-status online"></span>
-                    <!--change to offline or busy as needed-->
-                </div>
-                <div class="nav-profile-text">
-                    <span class="font-weight-bold mb-2">{{profileData?.name}}</span>
-                    <span class="text-secondary text-small" translate>Project Manager</span>
-                </div>
-                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-            </a>
-        </li>
+<div class="sidebar_title">
+    Euro claims
+    </div>
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+            <li class="nav-item nav-profile">
+                <a href="javascript:;" class="nav-link">
+                    <div class="nav-profile-image">
+                        <img src="assets/images/Profile_avatar_placeholder_large.png" alt="profile">
+                    </div>
+                    <div class="nav-profile-text">
+                        <span class="font-weight-bold mb-2">{{profileData?.name}}</span>
+                        <span class="text-secondary text-small">Euro claims</span>
+                    </div>
+                </a>
+            </li>
+    
+    
+            <li class="nav-item" [ngClass]="{ 'active': assignment.isActive }">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/assignment" routerLinkActive #assignment="routerLinkActive">
+                  <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    <span class="menu-title">{{'SIDEBAR.ASIGNMENT' |translate}}</span>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': previews.isActive }" *ngIf="userTypeRole!=='Insurance User'">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/previews" routerLinkActive #previews="routerLinkActive">
+                    <i class="mdi mdi-view-grid"></i>
+                    <span class="menu-title">{{'SIDEBAR.PREVIEWS' |translate}}</span>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': agenda.isActive }" *ngIf="userTypeRole!=='Insurance User'">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/agenda" routerLinkActive #agenda="routerLinkActive">
+                  <i class="mdi mdi-calendar-check"></i>
+                    <span class="menu-title">{{'SIDEBAR.AGENDA' |translate}}</span>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': chats.isActive }">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/chats" routerLinkActive #chats="routerLinkActive">
+                 <i class="mdi mdi-message-text"></i>
+                    <span class="menu-title">{{'SIDEBAR.CHATS' |translate}}</span>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': user.isActive }">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/user" routerLinkActive #user="routerLinkActive">
+                 <i class="fa fa-users"></i>
+                    <span class="menu-title">{{'SIDEBAR.USER' |translate}}</span>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': client.isActive }">
+                <a class="nav-link" (click)="clickedMenu($event)" routerLink="/client" routerLinkActive #client="routerLinkActive">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-title">{{'SIDEBAR.CLIENTS' |translate}}</span>
+                </a>
+            </li>
+    
+            <li class="nav-item logout">
+                <a class="nav-link" (click)="logout()" *ngIf="userType==='admin'">
+                    <i class="mdi mdi-logout"></i>
+                    <span class="menu-title">{{'SIDEBAR.SIGNOUT' |translate}}</span>
+                </a>
 
-
-        <li class="nav-item" [ngClass]="{ 'active': assignment.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/assignment" routerLinkActive #assignment="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.ASIGNMENT' |translate}}</span>
-            </a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': previews.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/previews" routerLinkActive #previews="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.PREVIEWS' |translate}}</span>
-            </a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': agenda.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/agenda" routerLinkActive #agenda="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.AGENDA' |translate}}</span>
-            </a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': chats.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/chats" routerLinkActive #chats="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.CHATS' |translate}}</span>
-            </a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': user.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/user" routerLinkActive #user="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.USER' |translate}}</span>
-            </a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': client.isActive }">
-            <a class="nav-link" (click)="clickedMenu($event)" routerLink="/client" routerLinkActive #client="routerLinkActive">
-                <span class="menu-title">{{'SIDEBAR.CLIENTS' |translate}}</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+                <a class="nav-link" (click)="logoutUser()" *ngIf="userType==='user'">
+                    <i class="mdi mdi-logout"></i>
+                    <span class="menu-title">{{'SIDEBAR.SIGNOUT' |translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
